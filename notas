@@ -1,0 +1,31 @@
+notas
+----------
+
+Base de datos
+-------------
+php artisan make:model modelo -m : este -m me crea la migracion tambien a la vez
+php artisan make:seeder
+php artisan make:migration
+
+php artisan migrate
+php artisan migrate:refresh --seed
+llenar tabla
+----------
+php artisan db:seed
+php artisan db:seed --class=UserTableSeeder
+
+En mysql se pone ->unsigned() para las llaves foraneas si no, no funciona
+
+cuando hice seed en una pc distinta me salia que no existe la clase see
+pero si existia entonces encontre que se debe ejecutar este codigo
+composer dump-autoload
+
+DB::table('users')->truncate(); para no repetir la data
+
+Para guardar datos
+------------------
+creamos el request para validar
+php artisan make:request
+
+
+{!!Auth::user()->name!!}
