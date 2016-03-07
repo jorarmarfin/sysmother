@@ -56,7 +56,7 @@
         <li class="treeview">
           <a href="#"><i class="fa fa-user"></i> <span>Pruebas</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li><a href={{route('prueba.prueba.index')}} ><i class="fa fa-table"></i><span> Maestro detalle</span></a></li>
+            <li><a href='#' ><i class="fa fa-table"></i><span> Maestro detalle</span></a></li>
             <li><a href="#">Link in level 2</a></li>
           </ul>
         </li>

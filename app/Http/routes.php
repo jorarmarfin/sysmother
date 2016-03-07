@@ -24,8 +24,3 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 /**
  * Ruta de pruebas
  */
-Route::group(['prefix'=>'prueba','namespace'=>'Prueba'],function(){
-
-	Route::resource('prueba','PruebaController');
-
-});
