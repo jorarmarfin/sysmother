@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DetalleSeeder extends Seeder
+class TransaccionDetalleTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class DetalleSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Detalle::class,10)->create();
+        factory(App\TransaccionDetalle::class,20)->create();
     }
 }

@@ -28,17 +28,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password','idrole'];
-    /**
-     * Para que la clave ingrese cifrada
-     * @param [type] $value [description]
-     */
-    public function setPasswordAttribute($value)
-    {
-        if (!empty($value)) {
-            $this->attributes['password']= bcrypt($value);
-        }
-    }
+    protected $fillable = ['name', 'email', 'password'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -46,10 +36,4 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
-    #--------------------------------------------------------------------
-    public function scopeLista($cadenaSQL){
-        return $cadenaSQL->select('users.id','name','email','password','catalogo.nombre as rol')
-                         ->join('catalogo','users.idrole','=','catalogo.id')
-                         ->orderby('users.id');
-    }
 }

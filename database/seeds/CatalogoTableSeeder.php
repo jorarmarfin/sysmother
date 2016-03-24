@@ -28,6 +28,30 @@ class CatalogoTableSeeder extends Seeder
                 'activo'=> TRUE
             ]);
         factory(App\Catalogo::class)->create([
+                'idtable'=> 0,
+                'iditem'=> 2,
+                'codigo'=> 'CAT',
+                'nombre'=> 'CATEGORIA PRODUCTO',
+                'descripcion'=> 'CATEGORIA DE LOS PRODUCTOS',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 0,
+                'iditem'=> 3,
+                'codigo'=> 'TITRA',
+                'nombre'=> 'TIPO TRANSACCION',
+                'descripcion'=> 'TIPO DE TRANSACCION A REALIZAR',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 0,
+                'iditem'=> 4,
+                'codigo'=> 'ESTA',
+                'nombre'=> 'ESTADO',
+                'descripcion'=> 'TIPO DE ESTADOS DE UNA ENTIDAD',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
                 'idtable'=> 1,
                 'iditem'=> 1,
                 'codigo'=> 'admin',
@@ -41,6 +65,54 @@ class CatalogoTableSeeder extends Seeder
                 'codigo'=> 'vend',
                 'nombre'=> 'vendedor',
                 'descripcion'=> 'vendedor',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 2,
+                'iditem'=> 1,
+                'codigo'=> 'cat1',
+                'nombre'=> 'cat1',
+                'descripcion'=> 'categoria 1',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 2,
+                'iditem'=> 2,
+                'codigo'=> 'cat2',
+                'nombre'=> 'cat2',
+                'descripcion'=> 'categoria 2',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 3,
+                'iditem'=> 1,
+                'codigo'=> 'tran1',
+                'nombre'=> 'tran1',
+                'descripcion'=> 'transaccion 1',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 3,
+                'iditem'=> 2,
+                'codigo'=> 'tran2',
+                'nombre'=> 'tran2',
+                'descripcion'=> 'transaccion 2',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 4,
+                'iditem'=> 1,
+                'codigo'=> 'Est1',
+                'nombre'=> 'Est1',
+                'descripcion'=> 'Estado 1',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 4,
+                'iditem'=> 2,
+                'codigo'=> 'Est2',
+                'nombre'=> 'Est2',
+                'descripcion'=> 'Estado 2',
                 'activo'=> TRUE
             ]);
     }

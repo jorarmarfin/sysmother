@@ -1,21 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Auth;
-use Session;
-use Redirect;
-
 use App\Http\Requests;
-use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
-
-
     /**
      * Display a listing of the resource.
      *
@@ -23,17 +16,9 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return view('auth.login');
+        //
     }
 
-    /**
-     * Funcion para cerrar sesion
-     * @return [type] [description]
-     */
-    public function logout(){
-        Auth::logout();
-        return redirect('auth/login');
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -50,15 +35,9 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LoginRequest $request)
+    public function store(Request $request)
     {
-        if (Auth::attempt(['email'=>$request['email'],'password'=>$request['password']])) {
-            return Redirect::to('admin');
-            // echo Auth::user()->id;
-        }else{
-            Session::flash('message-errors', 'Datos incorrectos');
-            return Redirect::to('auth/login');
-        }
+        //
     }
 
     /**
