@@ -1,13 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Prestamo;
+
+use App\Transaccion;
+use App\Catalogo;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class AuthController extends Controller
+class PrestamoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +19,23 @@ class AuthController extends Controller
      */
     public function index()
     {
-        //
+
+        $id = Catalogo::IdCatalogo('TIPO TRANSACCION','Prestamo');
+        $Lista = Transaccion::select(
+                                'transaccion.id',
+                                'cliente.nombres',
+                                'transaccion.fecha',
+                                'transaccion.hora',
+                                'transaccion.monto',
+                                'transaccion.interes',
+                                'transaccion.total',
+                                'catalogo.nombre as estado'
+                                )
+                            ->join('cliente', 'cliente.id', '=', 'transaccion.idcliente')
+                            ->join('catalogo', 'catalogo.id', '=', 'transaccion.idestado')
+                            ->where('idtipo',$id)
+                            ->orderBy('id')->get();
+        return view('admin.Prestamo.list',compact('Lista'));
     }
 
     /**

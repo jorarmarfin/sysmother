@@ -15,6 +15,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('admin', function () {
+    return view('admin.index');
+});
+
+/**
+ * Rutas de Prestamo
+ */
+// Route::resource('prestamo','Prestamo\PrestamoController');
+Route::group(['prefix'=>'prestamo','namespace'=>'Prestamo'],function(){
+
+// 	// Route::resource('user','UserController');
+// 	// Route::resource('catalogo','CatalogoController');
+	// Route::get('list','PrestamoController@index');
+	Route::get('list', [
+	 'uses' => 'PrestamoController@index',
+	 'as' => 'list'
+	]);
+});
+
 // Authentication routes...
 Route::get('login', [
 	 'uses' => 'Auth\AuthController@getLogin',

@@ -31,36 +31,14 @@
       <ul class="sidebar-menu">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-table"></i> <span>Lista de Usuarios</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span>Usuarios</span> <i class="fa fa-angle-left pull-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a href={{route('admin.user.index')}} ><i class="fa fa-table"></i><span> Lista de Usuarios</span></a></li>
-            <li><a href={{route('admin.user.create')}} ><i class="fa fa-user-plus"></i><span> Registrar Usuarios</span></a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
+        <li><a href="#"><i class="fa fa-money"></i> <span>Prestamo</span></a></li>
+        <li><a href="#"><i class="fa fa-shopping-cart"></i> <span>Venta</span></a></li>
+        <li><a href="#"><i class="fa fa-user"></i> <span>Cliente</span></a></li>
+        <li><a href="#"><i class="fa fa-list"></i> <span>Pedido</span></a></li>
+        <li><a href="#"><i class="fa fa-cubes"></i> <span>Productos</span></a></li>
+
       </ul>
-      <ul class="sidebar-menu">
-        <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span>Catalogo</span> <i class="fa fa-angle-left pull-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a href={{route('admin.catalogo.index')}} ><i class="fa fa-table"></i><span> Lista de Tablas</span></a></li>
-            <li><a href={{route('admin.catalogo.create')}} ><i class="fa fa-plus"></i><span> Registrar Tabla</span></a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="sidebar-menu">
-        <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span>Pruebas</span> <i class="fa fa-angle-left pull-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a href={{route('prueba.prueba.index')}} ><i class="fa fa-table"></i><span> Maestro detalle</span></a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
-      </ul>
+
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

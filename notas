@@ -31,5 +31,5 @@ Para guardar datos
 creamos el request para validar
 php artisan make:request
 
-
+nombre del usuario
 {!!Auth::user()->name!!}

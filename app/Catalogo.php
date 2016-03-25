@@ -12,8 +12,9 @@ class Catalogo extends Model
     // public $timestamps = false;
     #####################################################################
 	public function Maestro($NameTable){
-		$data=$this->select('iditem')->where('idtable',0)
-			 ->where('nombre',"$NameTable")->first();
+		$data=$this->select('iditem')
+				   ->where('idtable',0)
+			       ->where('nombre',"$NameTable")->first();
 		return $data->iditem;
 	}
 	#--------------------------------------------------------------------
@@ -21,6 +22,13 @@ class Catalogo extends Model
 		$idtable=$this->Maestro($NameTable);
 		return $cadenaSQL->where('idtable',$idtable)
 						 ->where('activo',1)->orderBy('id');
+	}
+	#--------------------------------------------------------------------
+	public function scopeIdCatalogo($cadenaSQL,$NameTable,$NameSubTable){
+		$idtable=$this->Maestro($NameTable);
+		return $cadenaSQL->where('idtable',$idtable)
+						 ->where('nombre',$NameSubTable)
+						 ->where('activo',1)->lists('id')[0];
 	}
 
 }

@@ -86,17 +86,17 @@ class CatalogoTableSeeder extends Seeder
         factory(App\Catalogo::class)->create([
                 'idtable'=> 3,
                 'iditem'=> 1,
-                'codigo'=> 'tran1',
-                'nombre'=> 'tran1',
-                'descripcion'=> 'transaccion 1',
+                'codigo'=> 'Prestamo',
+                'nombre'=> 'Prestamo',
+                'descripcion'=> 'Prestamo',
                 'activo'=> TRUE
             ]);
         factory(App\Catalogo::class)->create([
                 'idtable'=> 3,
                 'iditem'=> 2,
-                'codigo'=> 'tran2',
-                'nombre'=> 'tran2',
-                'descripcion'=> 'transaccion 2',
+                'codigo'=> 'Venta',
+                'nombre'=> 'Venta',
+                'descripcion'=> 'Venta',
                 'activo'=> TRUE
             ]);
         factory(App\Catalogo::class)->create([
