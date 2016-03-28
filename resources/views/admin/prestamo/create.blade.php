@@ -1,0 +1,129 @@
+@extends('layouts.admin')
+
+@section('links')
+<!-- bootstrap datepicker -->
+  <link rel="stylesheet" href={{asset("plugins/datepicker/datepicker3.css")}}>
+<!-- Bootstrap time Picker -->
+  <link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">
+@stop
+
+@section('nombreusuario')
+{!!Auth::user()->name!!}
+@stop
+
+@section('titulopagina')
+Administracion de Prestamos
+@stop
+
+@section('subtitulopagina')
+
+@stop
+
+
+@section('titulocuerpo')
+Lista de Prestamos
+@stop
+
+@section('cuerpo')
+	{!!Form::open(['route'=> 'prestamo.store','method'=> 'POST','class'=>''])!!}
+		@include('alerts.success')
+	<!-- Default box -->
+      <div class="box box-primary">
+        <div class="box-header with-border">
+        	<a href="{{route('prestamo.create')}}" class="btn btn btn-primary">
+              <i class="fa fa fa-plus" ></i>
+              Nuevo Prestamo
+			</a>
+          <br>
+          <br>
+          <h3 class="box-title">Nuevo Prestamo</h3>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <div class="box-body">
+        	<div class="row">
+				<div class='col-sm-12'>
+					{!!Form::label('lblName', 'Cliente')!!}</br>
+					{!!Form::select('idcliente', array('-1' => 'Seleccionar'),null,['class'=>'form-control','id'=>'idcliente']);!!}</br>
+				</div>
+				<div class='col-sm-12'>
+					{!!Form::label('lblFecha', 'Fecha')!!}</br>
+					<div class="input-group date">
+	                  <div class="input-group-addon">
+	                    <i class="fa fa-calendar"></i>
+	                  </div>
+	                  {!!Form::text('fecha',null, ['class'=>'form-control pull-right','id'=> 'datepicker'])!!}
+
+	                </div>
+	            	</br>
+				</div>
+				<div class='col-sm-12'>
+					{!!Form::label('lblHora', 'Hora')!!}</br>
+					<div class="bootstrap-timepicker">
+		                <div class="form-group">
+		                  <div class="input-group">
+		                    <div class="input-group-addon">
+		                      <i class="fa fa-clock-o"></i>
+		                    </div>
+		                    <input type="text" class="form-control timepicker">
+
+		                  </div>
+		                  <!-- /.input group -->
+		                </div>
+		                <!-- /.form group -->
+		            </div>
+	            	</br>
+				</div>
+
+				<div class='col-sm-2'>
+					{!!Form::label('lblMonto', 'Monto')!!}</br>
+					{!!Form::text('monto',null, ['class'=>'form-control','placeholder'=> 'Monto'])!!}
+				</div>
+				<div class='col-sm-2'>
+					{!!Form::label('lblInteres', 'Interes')!!}</br>
+					{!!Form::text('interes',null, ['class'=>'form-control','placeholder'=> 'Interes'])!!}
+				</div>
+				<div class='col-sm-2'>
+					{!!Form::label('lblTotal', 'Total')!!}</br>
+					{!!Form::text('total',null, ['class'=>'form-control','placeholder'=> 'Total'])!!}
+				</div>
+
+			</div>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+
+        </div>
+        <!-- /.box-footer-->
+      </div>
+      <!-- /.box -->
+	{!!Form::close()!!}
+@stop
+
+@section('librerias')
+<!-- FastClick -->
+<script src={{asset("plugins/fastclick/fastclick.js")}}></script>
+<!-- AdminLTE for demo purposes -->
+<script src={{asset("dist/js/demo.js")}}></script>
+<!-- bootstrap datepicker -->
+<script src={{asset("plugins/datepicker/bootstrap-datepicker.js")}}></script>
+<!-- bootstrap time picker -->
+<script src={{asset("plugins/timepicker/bootstrap-timepicker.min.js")}}></script>
+@stop
+
+@section('javascript')
+<script>
+	//Date picker
+	    $('#datepicker').datepicker({
+	      autoclose: true
+	    });
+	//Timepicker
+    $(".timepicker").timepicker({
+      showInputs: false
+    });
+</script>
+@stop

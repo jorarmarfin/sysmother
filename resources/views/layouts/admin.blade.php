@@ -52,5 +52,8 @@
      user experience. Slimscroll is required when using the
      fixed layout. -->
 @yield('librerias')
+
+@yield('javascript')
+
 </body>
 </html>

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('nombreusuario')
-luis
+{!!Auth::user()->name!!}
 @stop
 
 @section('titulopagina')

@@ -21,21 +21,8 @@ class PrestamoController extends Controller
     {
 
         $id = Catalogo::IdCatalogo('TIPO TRANSACCION','Prestamo');
-        $Lista = Transaccion::select(
-                                'transaccion.id',
-                                'cliente.nombres',
-                                'transaccion.fecha',
-                                'transaccion.hora',
-                                'transaccion.monto',
-                                'transaccion.interes',
-                                'transaccion.total',
-                                'catalogo.nombre as estado'
-                                )
-                            ->join('cliente', 'cliente.id', '=', 'transaccion.idcliente')
-                            ->join('catalogo', 'catalogo.id', '=', 'transaccion.idestado')
-                            ->where('idtipo',$id)
-                            ->orderBy('id')->get();
-        return view('admin.Prestamo.list',compact('Lista'));
+        $Lista = Transaccion::getPrestamos($id);
+        return view('admin.prestamo.list',compact('Lista'));
     }
 
     /**
@@ -45,7 +32,7 @@ class PrestamoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.prestamo.create');
     }
 
     /**

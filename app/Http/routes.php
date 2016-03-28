@@ -10,28 +10,32 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('admin', function () {
-    return view('admin.index');
-});
+Route::get('/', [
+	 'uses' => 'Auth\AuthController@getLogin',
+	 'as' => 'login'
+	]);
 
 /**
  * Rutas de Prestamo
  */
-// Route::resource('prestamo','Prestamo\PrestamoController');
-Route::group(['prefix'=>'prestamo','namespace'=>'Prestamo'],function(){
+Route::group(['prefix'=>'prestamo','namespace'=>'Prestamo','middleware'=> 'auth'],function(){
 
-// 	// Route::resource('user','UserController');
-// 	// Route::resource('catalogo','CatalogoController');
-	// Route::get('list','PrestamoController@index');
-	Route::get('list', [
-	 'uses' => 'PrestamoController@index',
-	 'as' => 'list'
+	Route::get('list', ['uses' => 'PrestamoController@index','as' => 'prestamo.list'	]);
+});
+
+Route::group(['middleware'=> 'auth'],function(){
+	Route::resource('prestamo','Prestamo\PrestamoController');
+});
+
+
+
+
+Route::group(['middleware'=> 'auth'], function() {
+	Route::get('home', [
+	'uses' =>'HomeController@index',
+	'as' => 'home'
 	]);
+
 });
 
 // Authentication routes...

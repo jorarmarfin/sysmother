@@ -23,26 +23,26 @@
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Iniciar la sesión</p>
-        <form action="{{route('login') }}" method="POST">
+        @include('alerts.errors')
+          @if(Session::has('alert'))
+            <p class='alert alert-success'>{{Session::get('alert')}}</p>
+          @endif
+          {!!Form::open(['route'=>'login','method'=>'POST'])!!}
           <div class="form-group has-feedback">
-            <input name="email" type="email" class="form-control" placeholder="Email">
+            {!!Form::email('email',old('email'), ['class'=>'form-control','placeholder'=>'Email'])!!}
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input name="password" type="password" class="form-control" placeholder="Password">
+            {!!Form::password('password', ['class'=>'form-control','placeholder'=>'Password'])!!}
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
             <!-- /.col -->
             <div class="col-xs-12">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">ENTRAR</button>
+              {!!Form::submit('Entrar',['class'=>'btn btn-primary btn-block btn-flat'])!!}
             </div><!-- /.col -->
           </div>
-        </form>
-
-        <a href="#">Olvidé mi contraseña</a><br>
-        <a href="register.html" class="text-center">Registrar una nueva membresía</a>
-
+        {!!Form::close()!!}
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
 

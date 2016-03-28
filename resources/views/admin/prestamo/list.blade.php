@@ -6,7 +6,7 @@
 @stop
 
 @section('nombreusuario')
-Luis
+{!!Auth::user()->name!!}
 @stop
 
 @section('titulopagina')
@@ -27,8 +27,13 @@ Lista de Prestamos
 	<!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
+        	<a href="{{route('prestamo.create')}}" class="btn btn btn-primary">
+              <i class="fa fa fa-plus" ></i>
+              Nuevo Prestamo
+			</a>
+          <br>
+          <br>
           <h3 class="box-title">Lista de prestamos</h3>
-
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -67,13 +72,11 @@ Lista de Prestamos
 			        <td>{{$lista->total}}</td>
 			        <td>{{$lista->estado}}</td>
 			        <td>
-			            <a href="#" class="btn btn-info btn-flat  btn-xs">
-			              <i class="fa fa-edit" style="color:black;"></i>
-			              Editar
+			            <a href="#" class="btn btn-primary">
+			              <i class="fa fa-pencil" ></i>
 			            </a>
-			            <a href="#" class="btn btn-warning btn-flat  btn-xs">
-			              <i class="fa fa-user-times" style="color:black;"></i>
-			              Eliminar
+			            <a href="#" class="btn btn-danger">
+			              <i class="fa fa-trash-o" ></i>
 			            </a>
 			        </td>
 			      </tr>
