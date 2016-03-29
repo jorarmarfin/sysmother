@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Prestamo;
 
 use App\Transaccion;
 use App\Catalogo;
+use App\Cliente;
 
 use Illuminate\Http\Request;
 
@@ -32,7 +33,8 @@ class PrestamoController extends Controller
      */
     public function create()
     {
-        return view('admin.prestamo.create');
+        $clientes = Cliente::all()->lists('nombres','id')->toarray();
+        return view('admin.prestamo.create',compact('clientes'));
     }
 
     /**
@@ -43,7 +45,9 @@ class PrestamoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $user->save();
+        // dd($data);
     }
 
     /**

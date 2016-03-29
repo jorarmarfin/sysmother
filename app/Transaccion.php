@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Transaccion extends Model
 {
     protected $table = 'transaccion';
-    protected $fillable = ['idcliente','idtipo','fecha','hora','monto','interes','total','idestado'];
+    protected $fillable = ['fecha','hora','monto','interes'];
     protected $hidden = ['remember_token'];
+    protected $guarded = ['idcliente','idtipo', 'total','idestado'];
     // public $timestamps = false;
     #####################################################################
 	public function scopegetPrestamos($cadenaSQL,$id){
@@ -25,6 +26,6 @@ class Transaccion extends Model
                             ->join('cliente', 'cliente.id', '=', 'transaccion.idcliente')
                             ->join('catalogo', 'catalogo.id', '=', 'transaccion.idestado')
                             ->where('idtipo',$id)
-                            ->orderBy('id')->get();
+                            ->orderBy('id','desc')->get();
 	}
 }

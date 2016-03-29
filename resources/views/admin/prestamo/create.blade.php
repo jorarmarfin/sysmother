@@ -4,7 +4,7 @@
 <!-- bootstrap datepicker -->
   <link rel="stylesheet" href={{asset("plugins/datepicker/datepicker3.css")}}>
 <!-- Bootstrap time Picker -->
-  <link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">
+  <link rel="stylesheet" href={{asset("plugins/timepicker/bootstrap-timepicker.min.css")}}>
 @stop
 
 @section('nombreusuario')
@@ -47,8 +47,8 @@ Lista de Prestamos
         <div class="box-body">
         	<div class="row">
 				<div class='col-sm-12'>
-					{!!Form::label('lblName', 'Cliente')!!}</br>
-					{!!Form::select('idcliente', array('-1' => 'Seleccionar'),null,['class'=>'form-control','id'=>'idcliente']);!!}</br>
+					{!!Form::label('lblIdCliente', 'Cliente')!!}</br>
+					{!!Form::select('idcliente', ['-1' => 'Seleccionar Cliente']+ $clientes,null,['class'=>'form-control','id'=>'idcliente']);!!}</br>
 				</div>
 				<div class='col-sm-12'>
 					{!!Form::label('lblFecha', 'Fecha')!!}</br>
@@ -91,12 +91,11 @@ Lista de Prestamos
 					{!!Form::label('lblTotal', 'Total')!!}</br>
 					{!!Form::text('total',null, ['class'=>'form-control','placeholder'=> 'Total'])!!}
 				</div>
-
 			</div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-
+        	{!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
         </div>
         <!-- /.box-footer-->
       </div>
@@ -119,11 +118,13 @@ Lista de Prestamos
 <script>
 	//Date picker
 	    $('#datepicker').datepicker({
-	      autoclose: true
+	      autoclose: true,
+      	  format: "dd-mm-yyyy"
 	    });
+	    // $('#datepicker').inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
 	//Timepicker
-    $(".timepicker").timepicker({
-      showInputs: false
-    });
+	    $(".timepicker").timepicker({
+	      showInputs: false
+	    });
 </script>
 @stop
