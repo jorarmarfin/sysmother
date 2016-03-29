@@ -20,10 +20,13 @@ class PrestamoController extends Controller
      */
     public function index()
     {
-
-        $id = Catalogo::IdCatalogo('TIPO TRANSACCION','Prestamo');
-        $Lista = Transaccion::getPrestamos($id);
-        return view('admin.prestamo.list',compact('Lista'));
+        $transaccion = Catalogo::find(10)->transaccion()->get();
+        dd($transaccion);
+        // $id = Catalogo::IdCatalogo('TIPO TRANSACCION','Prestamo');
+        // $Lista = Transaccion::getPrestamos($id);
+        // return view('admin.prestamo.list',compact('Lista'));
+        //
+        //
     }
 
     /**
