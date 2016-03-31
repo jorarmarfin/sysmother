@@ -11,16 +11,14 @@ class Transaccion extends Model
     protected $hidden = ['remember_token'];
     protected $guarded = ['idcliente','idtipo', 'total','idestado'];
     // public $timestamps = false;
+    /**
+     * Propiedad que calucla el total
+     */
     #####################################################################
 	public function scopegetPrestamos($cadenaSQL,$id){
 		return $cadenaSQL->select(
-                                'transaccion.id',
+                                'transaccion.*',
                                 'cliente.nombres',
-                                'transaccion.fecha',
-                                'transaccion.hora',
-                                'transaccion.monto',
-                                'transaccion.interes',
-                                'transaccion.total',
                                 'catalogo.nombre as estado'
                                 )
                             ->join('cliente', 'cliente.id', '=', 'transaccion.idcliente')

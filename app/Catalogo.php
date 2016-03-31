@@ -10,14 +10,6 @@ class Catalogo extends Model
     protected $fillable = ['idtable', 'iditem', 'codigo','nombre','descripcion','valor','activo'];
     protected $hidden = ['remember_token'];
     // public $timestamps = false;
-    /**
-     * Referncia a tablas
-     * @return [type] [description]
-     */
-    public function transaccion()
-    {
-        return $this->hasOne('App\Transaccion', 'idtipo', 'id');
-    }
     #####################################################################
 	public function Maestro($NameTable){
 		$data=$this->select('iditem')
