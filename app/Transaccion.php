@@ -1,5 +1,4 @@
 <?php
-
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -7,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 class Transaccion extends Model
 {
     protected $table = 'transaccion';
-    protected $fillable = ['fecha','hora','monto','interes'];
-    protected $hidden = ['remember_token'];
-    protected $guarded = ['idcliente','idtipo','idestado'];
+    protected $fillable = ['idcliente','idtipo','fecha','hora','monto','interes','idestado'];
+    protected $hidden = ['remember_token','idcliente','idtipo','idestado'];
+    protected $guarded = [];
     // public $timestamps = false;
     /**
      * Propiedad que calcula el total

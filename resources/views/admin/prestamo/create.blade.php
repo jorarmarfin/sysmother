@@ -26,6 +26,7 @@ Lista de Prestamos
 
 @section('cuerpo')
 	{!!Form::open(['route'=> 'prestamo.store','method'=> 'POST','class'=>''])!!}
+		@include('alerts.errors')
 		@include('alerts.success')
 	<!-- Default box -->
       <div class="box box-primary">
@@ -69,7 +70,7 @@ Lista de Prestamos
 		                    <div class="input-group-addon">
 		                      <i class="fa fa-clock-o"></i>
 		                    </div>
-		                    <input type="text" class="form-control timepicker">
+		                    <input name="hora" type="text" class="form-control timepicker">
 
 		                  </div>
 		                  <!-- /.input group -->
@@ -86,10 +87,6 @@ Lista de Prestamos
 				<div class='col-sm-2'>
 					{!!Form::label('lblInteres', 'Interes')!!}</br>
 					{!!Form::text('interes',null, ['class'=>'form-control','placeholder'=> 'Interes'])!!}
-				</div>
-				<div class='col-sm-2'>
-					{!!Form::label('lblTotal', 'Total')!!}</br>
-					{!!Form::text('total',null, ['class'=>'form-control','placeholder'=> 'Total'])!!}
 				</div>
 			</div>
         </div>

@@ -9,6 +9,7 @@ use App\Cliente;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\TransactionRequest;
 use App\Http\Controllers\Controller;
 
 class PrestamoController extends Controller
@@ -20,15 +21,12 @@ class PrestamoController extends Controller
      */
     public function index()
     {
-        // $result = Transaccion::all();
-        // foreach ($result as $row)$row->Final=$row->Final;
+        $id = Catalogo::IdCatalogo('TIPO TRANSACCION','Prestamo');
+        $Lista = Transaccion::getPrestamos($id);
+        foreach ($Lista as $row)$row->Total=$row->Total;
+        return view('admin.prestamo.list',compact('Lista'));
+        // $result = Transaccion::find(10)->with('transacciondetalle')->get();
         // dd($result->toArray());
-        // $id = Catalogo::IdCatalogo('TIPO TRANSACCION','Prestamo');
-        // $Lista = Transaccion::getPrestamos($id);
-        // foreach ($Lista as $row)$row->Total=$row->Total;
-        // return view('admin.prestamo.list',compact('Lista'));
-        $result = Transaccion::find(10)->with('transacciondetalle')->get();
-        dd($result->toArray());
     }
 
     /**
@@ -48,10 +46,16 @@ class PrestamoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TransactionRequest $request)
     {
         $data = $request->all();
-        $user->save();
+        $data['idtipo']=10;
+        $data['idestado']=13;
+
+        $transaction = new Transaccion($data);
+        $transaction->save();
+        return redirect()->route('prestamo.list')->with('success','Se ha registrado satisfactoriamente');
+        // $user->save();
         // dd($data);
     }
 

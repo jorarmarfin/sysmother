@@ -78,6 +78,9 @@ Lista de Prestamos
 			            <a href="#" class="btn btn-danger">
 			              <i class="fa fa-trash-o" ></i>
 			            </a>
+			            <a href="#" class="btn btn-success">
+			              <i class="fa fa-eye" ></i>
+			            </a>
 			        </td>
 			      </tr>
 
