@@ -9,11 +9,26 @@ class Transaccion extends Model
     protected $table = 'transaccion';
     protected $fillable = ['fecha','hora','monto','interes'];
     protected $hidden = ['remember_token'];
-    protected $guarded = ['idcliente','idtipo', 'total','idestado'];
+    protected $guarded = ['idcliente','idtipo','idestado'];
     // public $timestamps = false;
     /**
-     * Propiedad que calucla el total
+     * Propiedad que calcula el total
+     * @return [type] [description]
      */
+    public function getTotalAttribute()
+    {
+        $incremento =$this->monto*($this->interes/100);
+
+        return $this->monto+$incremento;
+    }
+    /**
+     * Relacion con la tabla transaccion detalle
+     * @return [type] [description]
+     */
+    public function transacciondetalle()
+    {
+        return $this->hasMany('App\TransaccionDetalle','idtransaccion','id');
+    }
     #####################################################################
 	public function scopegetPrestamos($cadenaSQL,$id){
 		return $cadenaSQL->select(

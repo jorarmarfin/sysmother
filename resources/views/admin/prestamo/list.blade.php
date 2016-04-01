@@ -52,7 +52,7 @@ Lista de Prestamos
 			      <th>monto</th>
 			      <th>interes</th>
 			      <th>total</th>
-			      <th>idestado</th>
+			      <th>estado</th>
 			      <th>Opciones</th>
 			    </tr>
 			    </thead>
@@ -92,7 +92,7 @@ Lista de Prestamos
 			      <th>monto</th>
 			      <th>interes</th>
 			      <th>total</th>
-			      <th>idestado</th>
+			      <th>estado</th>
 			      <th>Opciones</th>
 			    </tr>
 			    </tfoot>

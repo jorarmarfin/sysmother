@@ -81,10 +81,9 @@ $factory->define(App\Transaccion::class, function ($faker) {
         'idtipo' => $faker->numberBetween(10,11),
         'fecha' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'hora' => $faker->time($format = 'H:i:s', $max = 'now'),
-        'monto' => $faker->randomFloat(2,1,100),
-        'interes' => $faker->randomFloat(2,1,100),
-        'total' => $faker->randomFloat(2,1,100),
-        'idestado' => $faker->numberBetween(12,13),
+        'monto' => $faker->numberBetween($min = 500, $max = 9000),
+        'interes' => $faker->numberBetween($min = 2, $max = 9),
+        'idestado' => $faker->numberBetween($min = 12, $max = 13),
         'remember_token' => str_random(10),
     ];
 });

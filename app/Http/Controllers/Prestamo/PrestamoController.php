@@ -20,9 +20,15 @@ class PrestamoController extends Controller
      */
     public function index()
     {
-        $id = Catalogo::IdCatalogo('TIPO TRANSACCION','Prestamo');
-        $Lista = Transaccion::getPrestamos($id);
-        return view('admin.prestamo.list',compact('Lista'));
+        // $result = Transaccion::all();
+        // foreach ($result as $row)$row->Final=$row->Final;
+        // dd($result->toArray());
+        // $id = Catalogo::IdCatalogo('TIPO TRANSACCION','Prestamo');
+        // $Lista = Transaccion::getPrestamos($id);
+        // foreach ($Lista as $row)$row->Total=$row->Total;
+        // return view('admin.prestamo.list',compact('Lista'));
+        $result = Transaccion::find(10)->with('transacciondetalle')->get();
+        dd($result->toArray());
     }
 
     /**
