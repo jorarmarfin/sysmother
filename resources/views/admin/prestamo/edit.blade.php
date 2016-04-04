@@ -25,7 +25,7 @@ Lista de Prestamos
 @stop
 
 @section('cuerpo')
-	{!!Form::open(['route'=> 'prestamo.store','method'=> 'POST','class'=>''])!!}
+	{!!Form::model($prestamo,['route'=> ['prestamo.update',$prestamo],'method'=> 'PUT','class'=>''])!!}
 		@include('alerts.errors')
 		@include('alerts.success')
 	<!-- Default box -->

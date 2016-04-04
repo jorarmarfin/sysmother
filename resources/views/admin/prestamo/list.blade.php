@@ -44,17 +44,17 @@ Lista de Prestamos
         <div class="box-body table-responsive">
 	        <table id="tabla1" class="table table-bordered table-hover ">
 			    <thead>
-			    <tr>
-			      <th>Id</th>
-			      <th>Cliente</th>
-			      <th>Fecha</th>
-			      <th>Hora</th>
-			      <th>monto</th>
-			      <th>interes</th>
-			      <th>total</th>
-			      <th>estado</th>
-			      <th>Opciones</th>
-			    </tr>
+				    <tr>
+				      <th>Id</th>
+				      <th>Cliente</th>
+				      <th>Fecha</th>
+				      <th>Hora</th>
+				      <th>monto</th>
+				      <th>interes</th>
+				      <th>total</th>
+				      <th>estado</th>
+				      <th>Opciones</th>
+				    </tr>
 			    </thead>
 			    <tbody>
 			    @foreach($Lista as $lista)
@@ -72,10 +72,10 @@ Lista de Prestamos
 			        <td>{{$lista->total}}</td>
 			        <td>{{$lista->estado}}</td>
 			        <td>
-			            <a href="#" class="btn btn-primary">
+			            <a href="{{route('prestamo.edit',$lista->id)}}" class="btn btn-primary" >
 			              <i class="fa fa-pencil" ></i>
 			            </a>
-			            <a href="#" class="btn btn-danger">
+			            <a href="{{route('prestamo.show',$lista->id)}}" class="btn btn-danger">
 			              <i class="fa fa-trash-o" ></i>
 			            </a>
 			            <a href="#" class="btn btn-success">

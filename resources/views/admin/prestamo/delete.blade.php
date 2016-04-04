@@ -25,19 +25,20 @@ Lista de Prestamos
 @stop
 
 @section('cuerpo')
-	{!!Form::open(['route'=> 'prestamo.store','method'=> 'POST','class'=>''])!!}
+	{!!Form::model($prestamo,['route'=> ['prestamo.destroy',$prestamo],'method'=> 'DELETE','class'=>''])!!}
 		@include('alerts.errors')
 		@include('alerts.success')
 	<!-- Default box -->
       <div class="box box-primary">
         <div class="box-header with-border">
-        	<a href="{{route('prestamo.create')}}" class="btn btn btn-primary">
-              <i class="fa fa fa-plus" ></i>
-              Nuevo Prestamo
-			</a>
           <br>
-          <br>
-          <h3 class="box-title">Nuevo Prestamo</h3>
+          <h3 class="box-title">
+          	<div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                Esta seguro que desea eliminar este prestamo no podra desahacer esta opcion
+              </div>
+          </h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -92,7 +93,7 @@ Lista de Prestamos
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-        	{!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
+        	{!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
         	<a href="{{route('prestamo.list')}}" class="btn btn btn-success">
               Cancelar
 			</a>

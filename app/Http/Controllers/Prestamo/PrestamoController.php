@@ -55,8 +55,6 @@ class PrestamoController extends Controller
         $transaction = new Transaccion($data);
         $transaction->save();
         return redirect()->route('prestamo.list')->with('success','Se ha registrado satisfactoriamente');
-        // $user->save();
-        // dd($data);
     }
 
     /**
@@ -67,7 +65,14 @@ class PrestamoController extends Controller
      */
     public function show($id)
     {
-        //
+        $prestamo = Transaccion::findOrFail($id);
+        $Estado = Catalogo::findOrFail($prestamo->idestado);
+        if ($Estado->nombre=='Pagado') {
+            return redirect()->route('prestamo.list')->with('success','No puede editar un Prestamo que no ha sido pagado');
+        }else{
+            $clientes = Cliente::all()->lists('nombres','id')->toarray();
+            return view('admin.prestamo.delete',compact('clientes','prestamo'));
+        }
     }
 
     /**
@@ -78,7 +83,14 @@ class PrestamoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $prestamo = Transaccion::findOrFail($id);
+        $Estado = Catalogo::findOrFail($prestamo->idestado);
+        if ($Estado->nombre=='Pagado') {
+            return redirect()->route('prestamo.list')->with('success','No puede editar un Prestamo pagado');
+        }else{
+            $clientes = Cliente::all()->lists('nombres','id')->toarray();
+            return view('admin.prestamo.edit',compact('clientes','prestamo'));
+        }
     }
 
     /**
@@ -90,7 +102,11 @@ class PrestamoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $prestamo = Transaccion::findOrFail($id);
+        $prestamo->fill(\Request::all());
+        $prestamo->save();
+        return redirect()->route('prestamo.list')->with('success','Se ha editado satisfactoriamente');
+
     }
 
     /**
@@ -101,6 +117,14 @@ class PrestamoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Transaccion::destroy($id);
+        // if ($Estado->nombre=='Debe') {
+        //     return redirect()->route('prestamo.list')->with('success','No puede eliminar un Prestamo qu eno ha sido pagado');
+        // }else{
+        //     $clientes = Cliente::all()->lists('nombres','id')->toarray();
+        //     return view('admin.prestamo.edit',compact('clientes','prestamo'));
+        // }
+
+        return redirect()->route('prestamo.list')->with('success','Se ha eliminado el prestamo');
     }
 }
