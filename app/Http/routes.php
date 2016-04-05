@@ -20,14 +20,24 @@ Route::get('/', [
  */
 Route::group(['prefix'=>'prestamo','namespace'=>'Prestamo','middleware'=> 'auth'],function(){
 
-	Route::get('list', ['uses' => 'PrestamoController@index','as' => 'prestamo.list'	]);
+	Route::get('list', ['uses' => 'PrestamoController@index','as' => 'prestamo.list']);
 });
 
 Route::group(['middleware'=> 'auth'],function(){
 	Route::resource('prestamo','Prestamo\PrestamoController');
 });
 
+/**
+ * Rutas de Cuotas
+ */
+Route::group(['prefix'=>'cuotas','namespace'=>'Cuotas','middleware'=> 'auth'],function(){
 
+	Route::get('list/{id}', ['uses' => 'CuotasController@index','as' => 'cuotas.list']);
+});
+
+Route::group(['middleware'=> 'auth'],function(){
+	Route::resource('cuotas','Cuotas\CuotasController');
+});
 
 
 Route::group(['middleware'=> 'auth'], function() {

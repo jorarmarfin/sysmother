@@ -40,4 +40,24 @@ class Transaccion extends Model
                             ->where('idtipo',$id)
                             ->orderBy('id','desc')->get();
 	}
+    /**
+     * Trae las cuotas de un prestamo
+     * @param  string $cadenaSQL consulta
+     * @param  idtipo $id        tipo de transaccion
+     * @return string            lista las cuotas
+     */
+    public function scopegetCuotas($cadenaSQL,$idtipo,$id){
+        return $cadenaSQL->select(
+                                'transaccion.*',
+                                'cliente.nombres',
+                                'catalogo.nombre as estado',
+                                'cliente.foto'
+                                )
+                            ->join('cliente', 'cliente.id', '=', 'transaccion.idcliente')
+                            ->join('catalogo', 'catalogo.id', '=', 'transaccion.idestado')
+                            ->where('idtipo',$idtipo)
+                            ->where('transaccion.id',$id)
+                            ->with('transacciondetalle')
+                            ->get();
+    }
 }

@@ -19,25 +19,43 @@ Administracion de Prestamos
 
 
 @section('titulocuerpo')
-Lista de Prestamos
+Lista de cuotas
 @stop
 
 @section('cuerpo')
 @include('alerts.success')
 	<!-- Default box -->
-      <div class="box">
+      <div class="box box-warning">
         <div class="box-header with-border">
-        	<a href="{{route('prestamo.create')}}" class="btn btn btn-primary">
-              <i class="fa fa fa-plus" ></i>
-              Nuevo Prestamo
+        	<a href="{{route('cuotas.create')}}" class="btn btn btn-success">
+              <i class="fa fa-plus" ></i>
+               Nueva Cuota
 			</a>
-			<a href="{{route('prestamo.create')}}" class="btn btn btn-warning">
-              <i class="fa fa fa-plus" ></i>
-              Nuevo Cliente
+			<a href="{{route('prestamo.list')}}" class="btn btn btn-success">
+              <i class="fa fa-mail-reply " ></i>
+               Regresar a Prestamos
 			</a>
           <br>
           <br>
-          <h3 class="box-title">Lista de prestamos</h3>
+          <div class="box box-widget widget-user-2 col-sm-6">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-yellow">
+              <div class="widget-user-image">
+                <img class="img-circle" src={{$Lista[0]['foto'] }} alt="User Avatar">
+              </div>
+              <!-- /.widget-user-image -->
+              <h3 class="widget-user-username">{{$Lista[0]['nombres'] }}</h3>
+              <h5 class="widget-user-desc">cuotas del Cliente </h5>
+            </div>
+            <div class="box-footer no-padding col-sm-4">
+              <ul class="nav nav-stacked">
+                <li><a href="#">Monto <span class="pull-right badge bg-blue">{{$Lista[0]['monto'] }}</span></a></li>
+                <li><a href="#">Interes <span class="pull-right badge bg-aqua">{{$Lista[0]['interes'] }}</span></a></li>
+                <li><a href="#">Total <span class="pull-right badge bg-green">{{$Lista[0]['total'] }}</span></a></li>
+                <li><a href="#">Fecha del prestamo<span class="pull-right badge bg-red">{{$Lista[0]['fecha'] }}</span></a></li>
+              </ul>
+            </div>
+          </div>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -50,31 +68,23 @@ Lista de Prestamos
 			    <thead>
 				    <tr>
 				      <th>Id</th>
-				      <th>Cliente</th>
+				      <th>Entrada</th>
 				      <th>Fecha</th>
 				      <th>Hora</th>
-				      <th>monto</th>
-				      <th>interes</th>
-				      <th>total</th>
-				      <th>estado</th>
 				      <th>Opciones</th>
 				    </tr>
 			    </thead>
 			    <tbody>
-			    @foreach($Lista as $lista)
+			    @foreach($Lista[0]['transacciondetalle'] as $lista)
 			    	@if($lista->estado=='Pagado')
 			      		<tr class="info">
 			      	@else
 			      		<tr>
 			    	@endif
 			        <td>{{$lista->id}}</td>
-			        <td>{{$lista->nombres}}</td>
+			        <td>{{$lista->entrada}}</td>
 			        <td>{{$lista->fecha}}</td>
 			        <td>{{$lista->hora}}</td>
-			        <td>{{$lista->monto}}</td>
-			        <td>{{$lista->interes}}</td>
-			        <td>{{$lista->total}}</td>
-			        <td>{{$lista->estado}}</td>
 			        <td>
 			            <a href="{{route('prestamo.edit',$lista->id)}}" class="btn btn-primary" >
 			              <i class="fa fa-pencil" ></i>
@@ -82,7 +92,7 @@ Lista de Prestamos
 			            <a href="{{route('prestamo.show',$lista->id)}}" class="btn btn-danger">
 			              <i class="fa fa-trash-o" ></i>
 			            </a>
-			            <a href="{{route('cuotas.list',$lista->id)}}" class="btn btn-success">
+			            <a href="#" class="btn btn-success">
 			              <i class="fa fa-eye" ></i>
 			            </a>
 			        </td>
@@ -93,13 +103,9 @@ Lista de Prestamos
 			    <tfoot>
 			    <tr>
 			      <th>Id</th>
-			      <th>Cliente</th>
+			      <th>Entrada</th>
 			      <th>Fecha</th>
 			      <th>Hora</th>
-			      <th>monto</th>
-			      <th>interes</th>
-			      <th>total</th>
-			      <th>estado</th>
 			      <th>Opciones</th>
 			    </tr>
 			    </tfoot>

@@ -25,8 +25,6 @@ class PrestamoController extends Controller
         $Lista = Transaccion::getPrestamos($id);
         foreach ($Lista as $row)$row->Total=$row->Total;
         return view('admin.prestamo.list',compact('Lista'));
-        // $result = Transaccion::find(10)->with('transacciondetalle')->get();
-        // dd($result->toArray());
     }
 
     /**
@@ -67,8 +65,8 @@ class PrestamoController extends Controller
     {
         $prestamo = Transaccion::findOrFail($id);
         $Estado = Catalogo::findOrFail($prestamo->idestado);
-        if ($Estado->nombre=='Pagado') {
-            return redirect()->route('prestamo.list')->with('success','No puede editar un Prestamo que no ha sido pagado');
+        if ($Estado->nombre=='Debe') {
+            return redirect()->route('prestamo.list')->with('success','No puede eliminar un Prestamo que no ha sido pagado');
         }else{
             $clientes = Cliente::all()->lists('nombres','id')->toarray();
             return view('admin.prestamo.delete',compact('clientes','prestamo'));
