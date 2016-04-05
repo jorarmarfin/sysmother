@@ -49,10 +49,9 @@ Lista de cuotas
             </div>
             <div class="box-footer no-padding col-sm-4">
               <ul class="nav nav-stacked">
-                <li><a href="#">Monto <span class="pull-right badge bg-blue">{{$Lista[0]['monto'] }}</span></a></li>
-                <li><a href="#">Interes <span class="pull-right badge bg-aqua">{{$Lista[0]['interes'] }}</span></a></li>
-                <li><a href="#">Total <span class="pull-right badge bg-green">{{$Lista[0]['total'] }}</span></a></li>
-                <li><a href="#">Fecha del prestamo<span class="pull-right badge bg-red">{{$Lista[0]['fecha'] }}</span></a></li>
+                <li><a href="#">Total <span class="pull-right badge bg-blue">{{$Lista[0]['total'] }}</span></a></li>
+                <li><a href="#">Pagado <span class="pull-right badge bg-green">{{$pagado[0]['suma'] }}</span></a></li>
+                <li><a href="#">debe <span class="pull-right badge bg-red">{{$Lista[0]['total'] - $pagado[0]['suma'] }}</span></a></li>
               </ul>
             </div>
           </div>

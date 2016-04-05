@@ -8,6 +8,8 @@ use App\Cliente;
 use App\TransaccionDetalle;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use DB;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -21,13 +23,15 @@ class CuotasController extends Controller
      */
     public function index($id)
     {
+        Session::put('id', $id);
         $idtipo = Catalogo::IdCatalogo('TIPO TRANSACCION','Prestamo');
         $Lista = Transaccion::getCuotas($idtipo,$id);
         foreach ($Lista as $row)$row->Total=$row->Total;
-        // $result = Transaccion::find(1)->get();
-        // dd($result[0]['idcliente']);
-        // dd($Lista->toArray());
-        return view('admin.cuotas.list',compact('Lista'));
+        $raw = \DB::raw("SUBSTRING(codigo,3,4)");
+        $pagado = TransaccionDetalle::select(DB::raw('sum(entrada) as suma'))
+                                    ->where('idtransaccion',$id)->get();
+        // dd($pagado->toArray());
+        return view('admin.cuotas.list',compact('Lista','pagado'));
     }
 
     /**
@@ -37,7 +41,8 @@ class CuotasController extends Controller
      */
     public function create()
     {
-        //
+        $id = Session::get('id');
+        echo "create ".$id;
     }
 
     /**
