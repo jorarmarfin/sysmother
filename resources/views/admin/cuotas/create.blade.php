@@ -31,13 +31,8 @@ Lista de Prestamos
 	<!-- Default box -->
       <div class="box box-primary">
         <div class="box-header with-border">
-        	<a href="{{route('prestamo.create')}}" class="btn btn btn-primary">
-              <i class="fa fa fa-plus" ></i>
-              Nuevo Prestamo
-			</a>
           <br>
-          <br>
-          <h3 class="box-title">Nuevo Prestamo</h3>
+          <h3 class="box-title">Nueva Cuota</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -49,7 +44,7 @@ Lista de Prestamos
         	<div class="row">
 				<div class='col-sm-12'>
 					{!!Form::label('lblIdCliente', 'Cliente')!!}</br>
-					{!!Form::select('idcliente', ['-1' => 'Seleccionar Cliente']+ $clientes,null,['class'=>'form-control','id'=>'idcliente']);!!}</br>
+					{!!Form::select('idcliente', ['-1' => 'Seleccionar Cliente'],null,['class'=>'form-control','id'=>'idcliente']);!!}</br>
 				</div>
 				<div class='col-sm-12'>
 					{!!Form::label('lblFecha', 'Fecha')!!}</br>

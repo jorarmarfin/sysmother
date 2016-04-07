@@ -27,7 +27,7 @@ Lista de cuotas
 	<!-- Default box -->
       <div class="box box-warning">
         <div class="box-header with-border">
-        	<a href="{{route('cuotas.create')}}" class="btn btn btn-success">
+        	<a href="#" class="btn btn btn-success" data-toggle="modal" data-target="#myModal">
               <i class="fa fa-plus" ></i>
                Nueva Cuota
 			</a>
@@ -51,7 +51,7 @@ Lista de cuotas
               <ul class="nav nav-stacked">
                 <li><a href="#">Total <span class="pull-right badge bg-blue">{{$Lista[0]['total'] }}</span></a></li>
                 <li><a href="#">Pagado <span class="pull-right badge bg-green">{{$pagado[0]['suma'] }}</span></a></li>
-                <li><a href="#">debe <span class="pull-right badge bg-red">{{$Lista[0]['total'] - $pagado[0]['suma'] }}</span></a></li>
+                <li><a href="#">Debe <span class="pull-right badge bg-red">{{$Lista[0]['total'] - $pagado[0]['suma'] }}</span></a></li>
               </ul>
             </div>
           </div>
@@ -85,14 +85,11 @@ Lista de cuotas
 			        <td>{{$lista->fecha}}</td>
 			        <td>{{$lista->hora}}</td>
 			        <td>
-			            <a href="{{route('prestamo.edit',$lista->id)}}" class="btn btn-primary" >
+			            <a href="{{route('cuotas.edit',$lista->id)}}" class="btn btn-primary" >
 			              <i class="fa fa-pencil" ></i>
 			            </a>
-			            <a href="{{route('prestamo.show',$lista->id)}}" class="btn btn-danger">
+			            <a href="{{route('cuotas.show',$lista->id)}}" class="btn btn-danger">
 			              <i class="fa fa-trash-o" ></i>
-			            </a>
-			            <a href="#" class="btn btn-success">
-			              <i class="fa fa-eye" ></i>
 			            </a>
 			        </td>
 			      </tr>
@@ -117,6 +114,31 @@ Lista de cuotas
         <!-- /.box-footer-->
       </div>
       <!-- /.box -->
+
+<!-- Modal -->
+{!!Form::open(['route'=> 'cuotas.store','method'=> 'POST','class'=>''])!!}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Nueva cuota de {{$Lista[0]['nombres'] }}</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label for="exampleInputName2">Monto</label>
+          {!!Form::number('entrada',null, ['class'=>'form-control','placeholder'=> 'Monto','step'=>'any'])!!}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+        {!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
+      </div>
+    </div>
+  </div>
+</div>
+{!!Form::close()!!}
 @stop
 
 @section('librerias')
@@ -128,4 +150,11 @@ Lista de cuotas
 <script src={{asset("plugins/datatables/jquery.dataTables.min.js")}}></script>
 <script src={{asset("plugins/datatables/dataTables.bootstrap.min.js")}}></script>
 <script src={{asset("js/table.js")}}></script>
+@stop
+@section('javascript')
+<script>
+	$('#myModal').on('shown.bs.modal', function () {
+	  $('#myInput').focus()
+	})
+</script>
 @stop

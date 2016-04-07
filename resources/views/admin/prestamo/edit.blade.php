@@ -119,7 +119,7 @@ Lista de Prestamos
 	//Date picker
 	    $('#datepicker').datepicker({
 	      autoclose: true,
-      	  format: "dd-mm-yyyy"
+      	  format: "yyyy-mm-dd"
 	    });
 	    // $('#datepicker').inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
 	//Timepicker

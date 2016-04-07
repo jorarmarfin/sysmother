@@ -9,7 +9,7 @@ use App\TransaccionDetalle;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use DB;
+use Carbon\Carbon;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -28,8 +28,7 @@ class CuotasController extends Controller
         $Lista = Transaccion::getCuotas($idtipo,$id);
         foreach ($Lista as $row)$row->Total=$row->Total;
         $raw = \DB::raw("SUBSTRING(codigo,3,4)");
-        $pagado = TransaccionDetalle::select(DB::raw('sum(entrada) as suma'))
-                                    ->where('idtransaccion',$id)->get();
+        $pagado = TransaccionDetalle::SumaPagada(Session::get('id'));
         // dd($pagado->toArray());
         return view('admin.cuotas.list',compact('Lista','pagado'));
     }
@@ -41,8 +40,7 @@ class CuotasController extends Controller
      */
     public function create()
     {
-        $id = Session::get('id');
-        echo "create ".$id;
+
     }
 
     /**
@@ -53,7 +51,29 @@ class CuotasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $date = Carbon::now();
+        $data = $request->all();
+        $data['idtransaccion']=Session::get('id');
+        $data['salida']=0;
+        $data['fecha']=$date->toDateString('d-m-Y');;
+        $data['hora']=$date->toTimeString();
+
+        $prestamo = Transaccion::findOrFail(Session::get('id'));
+        $pagado = TransaccionDetalle::SumaPagada(Session::get('id'));
+        $debe = $prestamo->Total-$pagado[0]['suma'];
+        $debe = number_format($debe,2) - $data['entrada'];
+        if ($debe==0) {
+            $transactionDetails = new TransaccionDetalle($data);
+            $transactionDetails->save();
+
+            return redirect()->back()->with('success','Ha cancelado el total de su deuda');
+        } elseif ($debe<0) {
+            return redirect()->back()->with('success','La cuota exede en total a lo prestado no se puede registrar');
+        } else{
+            $transactionDetails = new TransaccionDetalle($data);
+            $transactionDetails->save();
+            return redirect()->back()->with('success','Se ha registrado la cuota satisfactoriamente');
+        }
     }
 
     /**
@@ -64,7 +84,8 @@ class CuotasController extends Controller
      */
     public function show($id)
     {
-        //
+        $cuota = TransaccionDetalle::findOrFail($id);
+        return view('admin.cuotas.delete',compact('cuota'));
     }
 
     /**
@@ -75,7 +96,8 @@ class CuotasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cuota = TransaccionDetalle::findOrFail($id);
+        return view('admin.cuotas.edit',compact('cuota'));
     }
 
     /**
@@ -87,7 +109,11 @@ class CuotasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cuota = TransaccionDetalle::findOrFail($id);
+        $cuota->fill($request->all());
+        $cuota->save();
+        return redirect()->route('cuotas.list',$cuota->idtransaccion)
+                         ->with('success','Se ha editado satisfactoriamente');
     }
 
     /**
@@ -98,6 +124,9 @@ class CuotasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        TransaccionDetalle::destroy($id);
+        $cuota = Transaccion::findOrFail(Session::get('id'));
+        return redirect()->route('cuotas.list',$cuota->id)
+                         ->with('success','Se ha Eliminado satisfactoriamente');
     }
 }
