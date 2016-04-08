@@ -58,13 +58,14 @@ class CuotasController extends Controller
         $data['fecha']=$date->toDateString('d-m-Y');;
         $data['hora']=$date->toTimeString();
 
-        $prestamo = Transaccion::findOrFail(Session::get('id'));
-        $pagado = TransaccionDetalle::SumaPagada(Session::get('id'));
-        $debe = $prestamo->Total-$pagado[0]['suma'];
-        $debe = number_format($debe,2) - $data['entrada'];
+        $debe = $this->calculodeuda($data);
+
         if ($debe==0) {
             $transactionDetails = new TransaccionDetalle($data);
             $transactionDetails->save();
+            $prestamo = Transaccion::findOrFail(Session::get('id'));
+            $prestamo->idestado=12;
+            $prestamo->save();
 
             return redirect()->back()->with('success','Ha cancelado el total de su deuda');
         } elseif ($debe<0) {
@@ -72,6 +73,9 @@ class CuotasController extends Controller
         } else{
             $transactionDetails = new TransaccionDetalle($data);
             $transactionDetails->save();
+
+            $this->cambiaestadotransaccion(12);
+
             return redirect()->back()->with('success','Se ha registrado la cuota satisfactoriamente');
         }
     }
@@ -124,9 +128,44 @@ class CuotasController extends Controller
      */
     public function destroy($id)
     {
+        $cuota = TransaccionDetalle::findOrFail($id)->toArray();
+        $debe = $this->calculodeudaactual();
+
+        if ($debe==0) {
+            $this->cambiaestadotransaccion(13);
+        }
+
         TransaccionDetalle::destroy($id);
         $cuota = Transaccion::findOrFail(Session::get('id'));
         return redirect()->route('cuotas.list',$cuota->id)
                          ->with('success','Se ha Eliminado satisfactoriamente');
+    }
+    /**
+     * Calcula deuda descontando l acuota ingresada
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
+    public function calculodeuda($data)
+    {
+        $prestamo = Transaccion::findOrFail(Session::get('id'));
+        $pagado = TransaccionDetalle::SumaPagada(Session::get('id'));
+        $debe = $prestamo->Total-$pagado[0]['suma'];
+        $debe = number_format($debe,2) - $data['entrada'];
+        return $debe;
+    }
+
+    public function calculodeudaactual()
+    {
+        $prestamo = Transaccion::findOrFail(Session::get('id'));
+        $pagado = TransaccionDetalle::SumaPagada(Session::get('id'));
+        $debe = $prestamo->Total-$pagado[0]['suma'];
+        return $debe;
+    }
+
+    public function cambiaestadotransaccion($idestado)
+    {
+        $prestamo = Transaccion::findOrFail(Session::get('id'));
+        $prestamo->idestado=$idestado;
+        $prestamo->save();
     }
 }

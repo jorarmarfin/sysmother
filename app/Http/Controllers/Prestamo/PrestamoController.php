@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Prestamo;
 
 use App\Transaccion;
+use App\TransaccionDetalle;
 use App\Catalogo;
 use App\Cliente;
 
@@ -115,14 +116,12 @@ class PrestamoController extends Controller
      */
     public function destroy($id)
     {
-        Transaccion::destroy($id);
-        // if ($Estado->nombre=='Debe') {
-        //     return redirect()->route('prestamo.list')->with('success','No puede eliminar un Prestamo qu eno ha sido pagado');
-        // }else{
-        //     $clientes = Cliente::all()->lists('nombres','id')->toarray();
-        //     return view('admin.prestamo.edit',compact('clientes','prestamo'));
-        // }
-
-        return redirect()->route('prestamo.list')->with('success','Se ha eliminado el prestamo');
+        $cntCuotas = TransaccionDetalle::where('idtransaccion',$id)->count();
+        if ($cntCuotas==0) {
+            Transaccion::destroy($id);
+            return redirect()->route('prestamo.list')->with('success','Se ha eliminado el prestamo');
+        } else {
+            return redirect()->route('prestamo.list')->with('success','Este prestamo tiene cuotas no se puede eliminar');
+        }
     }
 }
