@@ -25,14 +25,18 @@ Lista de Prestamos
 @stop
 
 @section('cuerpo')
-	{!!Form::open(['route'=> 'prestamo.store','method'=> 'POST','class'=>''])!!}
+	{!!Form::model($cuota,['route'=> ['cuotas.destroy',$cuota],'method'=> 'DELETE','class'=>''])!!}
 		@include('alerts.errors')
 		@include('alerts.success')
 	<!-- Default box -->
-      <div class="box box-primary">
+      <div class="box box-warning">
         <div class="box-header with-border">
           <br>
-          <h3 class="box-title">Nuevo Ahorro</h3>
+          <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                Esta seguro que desea eliminar este prestamo no podra desahacer esta opcion
+              </div>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -42,9 +46,9 @@ Lista de Prestamos
         </div>
         <div class="box-body">
         	<div class="row">
-				<div class='col-sm-12'>
-					{!!Form::label('lblIdCliente', 'Cliente')!!}</br>
-					{!!Form::select('idcliente', ['-1' => 'Seleccionar Cliente']+ $clientes,null,['class'=>'form-control','id'=>'idcliente']);!!}</br>
+        		<div class='col-sm-2'>
+					{!!Form::label('lblMonto', 'Monto')!!}</br>
+					{!!Form::text('entrada',null, ['class'=>'form-control','placeholder'=> 'Monto'])!!}
 				</div>
 				<div class='col-sm-12'>
 					{!!Form::label('lblFecha', 'Fecha')!!}</br>
@@ -75,20 +79,13 @@ Lista de Prestamos
 	            	</br>
 				</div>
 
-				<div class='col-sm-2'>
-					{!!Form::label('lblMonto', 'Monto')!!}</br>
-					{!!Form::text('monto',null, ['class'=>'form-control','placeholder'=> 'Monto'])!!}
-				</div>
-				<div class='col-sm-2'>
-					{!!Form::label('lblInteres', 'Interes')!!}</br>
-					{!!Form::text('interes',null, ['class'=>'form-control','placeholder'=> 'Interes'])!!}
-				</div>
+
 			</div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-        	{!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
-        	<a href="{{route('prestamo.list')}}" class="btn btn btn-success">
+        	{!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
+        	<a href="{{route('cuotas.list',$cuota->idtransaccion)}}" class="btn btn btn-success">
               Cancelar
 			</a>
         </div>

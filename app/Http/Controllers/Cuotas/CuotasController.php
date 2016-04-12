@@ -74,7 +74,7 @@ class CuotasController extends Controller
             $transactionDetails = new TransaccionDetalle($data);
             $transactionDetails->save();
 
-            $this->cambiaestadotransaccion(12);
+            $this->cambiaestadotransaccion(13);
 
             return redirect()->back()->with('success','Se ha registrado la cuota satisfactoriamente');
         }
@@ -131,9 +131,8 @@ class CuotasController extends Controller
         $cuota = TransaccionDetalle::findOrFail($id)->toArray();
         $debe = $this->calculodeudaactual();
 
-        if ($debe==0) {
-            $this->cambiaestadotransaccion(13);
-        }
+        if ($debe==0)$this->cambiaestadotransaccion(12);
+        else $this->cambiaestadotransaccion(13);
 
         TransaccionDetalle::destroy($id);
         $cuota = Transaccion::findOrFail(Session::get('id'));
@@ -150,7 +149,7 @@ class CuotasController extends Controller
         $prestamo = Transaccion::findOrFail(Session::get('id'));
         $pagado = TransaccionDetalle::SumaPagada(Session::get('id'));
         $debe = $prestamo->Total-$pagado[0]['suma'];
-        $debe = number_format($debe,2) - $data['entrada'];
+        $debe -= $data['entrada'];
         return $debe;
     }
 

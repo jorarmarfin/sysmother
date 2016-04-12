@@ -28,6 +28,18 @@ Route::group(['middleware'=> 'auth'],function(){
 });
 
 /**
+ * Rutas de Ahorro
+ */
+Route::group(['prefix'=>'ahorro','namespace'=>'Ahorro','middleware'=> 'auth'],function(){
+
+	Route::get('list', ['uses' => 'AhorroController@index','as' => 'ahorro.list']);
+});
+
+Route::group(['middleware'=> 'auth'],function(){
+	Route::resource('ahorro','Ahorro\AhorroController');
+});
+
+/**
  * Rutas de Cuotas
  */
 Route::group(['prefix'=>'cuotas','namespace'=>'Cuotas','middleware'=> 'auth'],function(){
@@ -40,6 +52,9 @@ Route::group(['middleware'=> 'auth'],function(){
 });
 
 
+/**
+ * Rutas del home
+ */
 Route::group(['middleware'=> 'auth'], function() {
 	Route::get('home', [
 	'uses' =>'HomeController@index',

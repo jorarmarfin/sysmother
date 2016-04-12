@@ -29,7 +29,7 @@ class Transaccion extends Model
         return $this->hasMany('App\TransaccionDetalle','idtransaccion','id');
     }
     #####################################################################
-	public function scopegetPrestamos($cadenaSQL,$id){
+	public function scopegetTransaccion($cadenaSQL,$id){
 		return $cadenaSQL->select(
                                 'transaccion.*',
                                 'cliente.nombres',

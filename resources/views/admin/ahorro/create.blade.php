@@ -12,7 +12,7 @@
 @stop
 
 @section('titulopagina')
-Administracion de Prestamos
+Administracion de Ahorros
 @stop
 
 @section('subtitulopagina')
@@ -25,7 +25,7 @@ Lista de Prestamos
 @stop
 
 @section('cuerpo')
-	{!!Form::open(['route'=> 'prestamo.store','method'=> 'POST','class'=>''])!!}
+	{!!Form::open(['route'=> 'ahorro.store','method'=> 'POST','class'=>''])!!}
 		@include('alerts.errors')
 		@include('alerts.success')
 	<!-- Default box -->
@@ -77,18 +77,18 @@ Lista de Prestamos
 
 				<div class='col-sm-2'>
 					{!!Form::label('lblMonto', 'Monto')!!}</br>
-					{!!Form::text('monto',null, ['class'=>'form-control','placeholder'=> 'Monto'])!!}
+					{!!Form::text('monto',0, ['class'=>'form-control','placeholder'=> 'Monto'])!!}
 				</div>
 				<div class='col-sm-2'>
 					{!!Form::label('lblInteres', 'Interes')!!}</br>
-					{!!Form::text('interes',null, ['class'=>'form-control','placeholder'=> 'Interes'])!!}
+					{!!Form::text('interes',4, ['class'=>'form-control','placeholder'=> 'Interes'])!!}
 				</div>
 			</div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
         	{!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
-        	<a href="{{route('prestamo.list')}}" class="btn btn btn-success">
+        	<a href="{{route('ahorro.list')}}" class="btn btn btn-success">
               Cancelar
 			</a>
         </div>

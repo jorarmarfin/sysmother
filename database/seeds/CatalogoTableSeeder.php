@@ -115,5 +115,29 @@ class CatalogoTableSeeder extends Seeder
                 'descripcion'=> 'Estado 2',
                 'activo'=> TRUE
             ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 3,
+                'iditem'=> 3,
+                'codigo'=> 'Ahorro',
+                'nombre'=> 'Ahorro',
+                'descripcion'=> 'Ahorro',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 4,
+                'iditem'=> 3,
+                'codigo'=> 'Abierto',
+                'nombre'=> 'Abierto',
+                'descripcion'=> 'Estado 1',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 4,
+                'iditem'=> 4,
+                'codigo'=> 'Cerrado',
+                'nombre'=> 'Cerrado',
+                'descripcion'=> 'Estado 2',
+                'activo'=> TRUE
+            ]);
     }
 }

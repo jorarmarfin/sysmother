@@ -5,6 +5,12 @@ notas
 3) Controladores
 4) Funcionabilidad
 
+Agregar al sistema
+------------------
+Combos de regiones para ventas
+ahorristas es copia de prestamos
+
+
 Base de datos
 -------------
 php artisan make:model modelo -m : este -m me crea la migracion tambien a la vez

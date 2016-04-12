@@ -12,7 +12,7 @@
 @stop
 
 @section('titulopagina')
-Administracion de Prestamos
+Administracion de Ahorro
 @stop
 
 @section('subtitulopagina')
@@ -21,18 +21,18 @@ Administracion de Prestamos
 
 
 @section('titulocuerpo')
-Lista de Prestamos
+
 @stop
 
 @section('cuerpo')
-	{!!Form::open(['route'=> 'prestamo.store','method'=> 'POST','class'=>''])!!}
+	{!!Form::model($ahorro,['route'=> ['ahorro.update',$ahorro],'method'=> 'PUT','class'=>''])!!}
 		@include('alerts.errors')
 		@include('alerts.success')
 	<!-- Default box -->
-      <div class="box box-primary">
+      <div class="box box-info">
         <div class="box-header with-border">
           <br>
-          <h3 class="box-title">Nuevo Ahorro</h3>
+          <h3 class="box-title">Edita ahorro</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -88,7 +88,7 @@ Lista de Prestamos
         <!-- /.box-body -->
         <div class="box-footer">
         	{!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
-        	<a href="{{route('prestamo.list')}}" class="btn btn btn-success">
+        	<a href="{{route('ahorro.list')}}" class="btn btn btn-success">
               Cancelar
 			</a>
         </div>

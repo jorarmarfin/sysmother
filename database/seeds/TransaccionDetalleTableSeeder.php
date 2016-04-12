@@ -11,6 +11,6 @@ class TransaccionDetalleTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\TransaccionDetalle::class,20)->create();
+        factory(App\TransaccionDetalle::class,30)->create();
     }
 }

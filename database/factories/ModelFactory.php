@@ -78,12 +78,12 @@ $factory->define(App\Cliente::class, function ($faker) {
 $factory->define(App\Transaccion::class, function ($faker) {
     return [
         'idcliente' => $faker->numberBetween(1,20),
-        'idtipo' => $faker->numberBetween(10,11),
+        'idtipo' => $faker->randomElement($array = array (10,11,14)),
         'fecha' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'hora' => $faker->time($format = 'H:i:s', $max = 'now'),
         'monto' => $faker->numberBetween($min = 500, $max = 9000),
         'interes' => $faker->numberBetween($min = 2, $max = 9),
-        'idestado' => $faker->numberBetween($min = 12, $max = 13),
+        'idestado' => $faker->randomElement($array = array (12,13,15,16)),
         'remember_token' => str_random(10),
     ];
 });
@@ -93,7 +93,7 @@ $factory->define(App\Transaccion::class, function ($faker) {
  */
 $factory->define(App\TransaccionDetalle::class, function ($faker) {
     return [
-        'idtransaccion' => $faker->numberBetween(1,20),
+        'idtransaccion' => $faker->numberBetween(1,30),
         'entrada' => $faker->randomFloat($nbMaxDecimals = 2, $min = 1, $max = 100),
         'salida' => $faker->randomFloat($nbMaxDecimals = 2, $min = 1, $max = 100),
         'fecha' => $faker->date($format = 'Y-m-d', $max = 'now'),
