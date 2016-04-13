@@ -62,7 +62,7 @@ Lista de Prestamos
 			    </thead>
 			    <tbody>
 			    @foreach($Lista as $lista)
-			    	@if($lista->estado=='Pagado')
+			    	@if($lista->estado=='Cerrado')
 			      		<tr class="info">
 			      	@else
 			      		<tr>
@@ -82,7 +82,7 @@ Lista de Prestamos
 			            <a href="{{route('ahorro.show',$lista->id)}}" class="btn btn-danger">
 			              <i class="fa fa-trash-o" ></i>
 			            </a>
-			            <a href="{{route('cuotas.list',$lista->id)}}" class="btn btn-success">
+			            <a href="{{route('amortizacion.list',$lista->id)}}" class="btn btn-success">
 			              <i class="fa fa-eye" ></i>
 			            </a>
 			        </td>

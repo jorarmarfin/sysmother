@@ -24,12 +24,12 @@ class CuotasController extends Controller
     public function index($id)
     {
         Session::put('id', $id);
-        $idtipo = Catalogo::IdCatalogo('TIPO TRANSACCION','Prestamo');
+        $transaction = Transaccion::findOrFail($id);
+        $idtipo = $transaction->idtipo;
         $Lista = Transaccion::getCuotas($idtipo,$id);
         foreach ($Lista as $row)$row->Total=$row->Total;
         $raw = \DB::raw("SUBSTRING(codigo,3,4)");
         $pagado = TransaccionDetalle::SumaPagada(Session::get('id'));
-        // dd($pagado->toArray());
         return view('admin.cuotas.list',compact('Lista','pagado'));
     }
 

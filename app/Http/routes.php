@@ -51,6 +51,17 @@ Route::group(['middleware'=> 'auth'],function(){
 	Route::resource('cuotas','Cuotas\CuotasController');
 });
 
+/**
+ * Rutas de Amortizacion
+ */
+Route::group(['prefix'=>'amortizacion','namespace'=>'Amortizacion','middleware'=> 'auth'],function(){
+
+	Route::get('list/{id}', ['uses' => 'AmortizacionController@index','as' => 'amortizacion.list']);
+});
+
+Route::group(['middleware'=> 'auth'],function(){
+	Route::resource('amortizacion','Amortizacion\AmortizacionController');
+});
 
 /**
  * Rutas del home

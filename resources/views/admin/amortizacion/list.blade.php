@@ -10,7 +10,7 @@
 @stop
 
 @section('titulopagina')
-Administracion de Prestamos
+Administracion de Ahorro
 @stop
 
 @section('subtitulopagina')
@@ -19,7 +19,7 @@ Administracion de Prestamos
 
 
 @section('titulocuerpo')
-Lista de cuotas
+Lista de Amortizaciones
 @stop
 
 @section('cuerpo')
@@ -31,9 +31,9 @@ Lista de cuotas
               <i class="fa fa-plus" ></i>
                Nueva Cuota
 			</a>
-			<a href="{{route('prestamo.list')}}" class="btn btn btn-success">
+			<a href="{{route('ahorro.list')}}" class="btn btn btn-success">
               <i class="fa fa-mail-reply " ></i>
-               Regresar a Prestamos
+               Regresar a Ahorros
 			</a>
           <br>
           <br>
@@ -85,10 +85,10 @@ Lista de cuotas
 			        <td>{{$lista->fecha}}</td>
 			        <td>{{$lista->hora}}</td>
 			        <td>
-			            <a href="{{route('cuotas.edit',$lista->id)}}" class="btn btn-primary" >
+			            <a href="{{route('amortizacion.edit',$lista->id)}}" class="btn btn-primary" >
 			              <i class="fa fa-pencil" ></i>
 			            </a>
-			            <a href="{{route('cuotas.show',$lista->id)}}" class="btn btn-danger">
+			            <a href="{{route('amortizacion.show',$lista->id)}}" class="btn btn-danger">
 			              <i class="fa fa-trash-o" ></i>
 			            </a>
 			        </td>
@@ -116,7 +116,7 @@ Lista de cuotas
       <!-- /.box -->
 
 <!-- Modal -->
-{!!Form::open(['route'=> 'cuotas.store','method'=> 'POST','class'=>''])!!}
+{!!Form::open(['route'=> 'amortizacion.store','method'=> 'POST','class'=>''])!!}
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
