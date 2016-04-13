@@ -12,7 +12,7 @@
 @stop
 
 @section('titulopagina')
-Administracion de Prestamos
+Administracion de Ahorros
 @stop
 
 @section('subtitulopagina')
@@ -21,11 +21,10 @@ Administracion de Prestamos
 
 
 @section('titulocuerpo')
-Lista de Prestamos
 @stop
 
 @section('cuerpo')
-	{!!Form::model($cuota,['route'=> ['cuotas.destroy',$cuota],'method'=> 'DELETE','class'=>''])!!}
+	{!!Form::model($amortizacion,['route'=> ['amortizacion.destroy',$amortizacion],'method'=> 'DELETE','class'=>''])!!}
 		@include('alerts.errors')
 		@include('alerts.success')
 	<!-- Default box -->
@@ -35,7 +34,7 @@ Lista de Prestamos
           <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-                Esta seguro que desea eliminar este prestamo no podra desahacer esta opcion
+                Esta seguro que desea eliminar esta cuota de ahorro no podra desahacer esta opcion
               </div>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -48,7 +47,7 @@ Lista de Prestamos
         	<div class="row">
         		<div class='col-sm-2'>
 					{!!Form::label('lblMonto', 'Monto')!!}</br>
-					{!!Form::text('entrada',null, ['class'=>'form-control','placeholder'=> 'Monto'])!!}
+					{!!Form::number('entrada',null, ['class'=>'form-control','placeholder'=> 'Monto','step'=>'any'])!!}
 				</div>
 				<div class='col-sm-12'>
 					{!!Form::label('lblFecha', 'Fecha')!!}</br>
@@ -85,7 +84,7 @@ Lista de Prestamos
         <!-- /.box-body -->
         <div class="box-footer">
         	{!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
-        	<a href="{{route('cuotas.list',$cuota->idtransaccion)}}" class="btn btn btn-success">
+        	<a href="{{route('amortizacion.list',$amortizacion->idtransaccion)}}" class="btn btn btn-success">
               Cancelar
 			</a>
         </div>

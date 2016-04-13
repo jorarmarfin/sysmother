@@ -51,7 +51,6 @@ Lista de Amortizaciones
               <ul class="nav nav-stacked">
                 <li><a href="#">Total <span class="pull-right badge bg-blue">{{$Lista[0]['total'] }}</span></a></li>
                 <li><a href="#">Pagado <span class="pull-right badge bg-green">{{$pagado[0]['suma'] }}</span></a></li>
-                <li><a href="#">Debe <span class="pull-right badge bg-red">{{$Lista[0]['total'] - $pagado[0]['suma'] }}</span></a></li>
               </ul>
             </div>
           </div>

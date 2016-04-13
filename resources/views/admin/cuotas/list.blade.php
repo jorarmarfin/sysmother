@@ -23,6 +23,7 @@ Lista de cuotas
 @stop
 
 @section('cuerpo')
+@include('alerts.errors')
 @include('alerts.success')
 	<!-- Default box -->
       <div class="box box-warning">
@@ -128,7 +129,7 @@ Lista de cuotas
 
         <div class="form-group">
           <label for="exampleInputName2">Monto</label>
-          {!!Form::number('entrada',null, ['class'=>'form-control','placeholder'=> 'Monto','step'=>'any'])!!}
+          {!!Form::number('entrada',old('entrada'), ['class'=>'form-control','placeholder'=> 'Monto','step'=>'any'])!!}
         </div>
       </div>
       <div class="modal-footer">

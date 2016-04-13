@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 
 use App\Http\Requests;
+use App\Http\Requests\CuotaRequest;
 use App\Http\Controllers\Controller;
 
 class CuotasController extends Controller
@@ -49,7 +50,7 @@ class CuotasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CuotaRequest $request)
     {
         $date = Carbon::now();
         $data = $request->all();
@@ -135,8 +136,7 @@ class CuotasController extends Controller
         else $this->cambiaestadotransaccion(13);
 
         TransaccionDetalle::destroy($id);
-        $cuota = Transaccion::findOrFail(Session::get('id'));
-        return redirect()->route('cuotas.list',$cuota->id)
+        return redirect()->route('cuotas.list',Session::get('id'))
                          ->with('success','Se ha Eliminado satisfactoriamente');
     }
     /**

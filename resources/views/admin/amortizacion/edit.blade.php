@@ -12,7 +12,7 @@
 @stop
 
 @section('titulopagina')
-Administracion de Prestamos
+Administracion de Ahorros
 @stop
 
 @section('subtitulopagina')
@@ -21,18 +21,17 @@ Administracion de Prestamos
 
 
 @section('titulocuerpo')
-Lista de Prestamos
 @stop
 
 @section('cuerpo')
-	{!!Form::model($cuota,['route'=> ['cuotas.update',$cuota],'method'=> 'PUT','class'=>''])!!}
+	{!!Form::model($amortizacion,['route'=> ['amortizacion.update',$amortizacion],'method'=> 'PUT','class'=>''])!!}
 		@include('alerts.errors')
 		@include('alerts.success')
 	<!-- Default box -->
       <div class="box box-warning">
         <div class="box-header with-border">
           <br>
-          <h3 class="box-title">Nuevo Cuota</h3>
+          <h3 class="box-title">Editar Cuota</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -44,7 +43,7 @@ Lista de Prestamos
         	<div class="row">
         		<div class='col-sm-2'>
 					{!!Form::label('lblMonto', 'Monto')!!}</br>
-					{!!Form::text('entrada',null, ['class'=>'form-control','placeholder'=> 'Monto'])!!}
+					{!!Form::number('entrada',null, ['class'=>'form-control','placeholder'=> 'Monto','step'=>'any'])!!}
 				</div>
 				<div class='col-sm-12'>
 					{!!Form::label('lblFecha', 'Fecha')!!}</br>
@@ -81,7 +80,7 @@ Lista de Prestamos
         <!-- /.box-body -->
         <div class="box-footer">
         	{!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
-        	<a href="{{route('cuotas.list',$cuota->idtransaccion)}}" class="btn btn btn-success">
+        	<a href="{{route('amortizacion.list',$amortizacion->idtransaccion)}}" class="btn btn btn-success">
               Cancelar
 			</a>
         </div>

@@ -59,6 +59,7 @@ class AmortizacionController extends Controller
         $data['hora']=$date->toTimeString();
         $transactionDetails = new TransaccionDetalle($data);
         $transactionDetails->save();
+        $this->updateTotal($transactionDetails->idtransaccion);
         return redirect()->back()->with('success','Se ha registrado la cuota satisfactoriamente');
     }
 
@@ -70,7 +71,8 @@ class AmortizacionController extends Controller
      */
     public function show($id)
     {
-        //
+        $amortizacion = TransaccionDetalle::findOrFail($id);
+        return view('admin.amortizacion.delete',compact('amortizacion'));
     }
 
     /**
@@ -81,7 +83,8 @@ class AmortizacionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $amortizacion = TransaccionDetalle::findOrFail($id);
+        return view('admin.amortizacion.edit',compact('amortizacion'));
     }
 
     /**
@@ -93,7 +96,12 @@ class AmortizacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $amortizacion = TransaccionDetalle::findOrFail($id);
+        $amortizacion->fill($request->all());
+        $amortizacion->save();
+        $this->updateTotal($amortizacion->idtransaccion);
+        return redirect()->route('amortizacion.list',$amortizacion->idtransaccion)
+                         ->with('success','Se ha editado satisfactoriamente');
     }
 
     /**
@@ -104,6 +112,18 @@ class AmortizacionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $idtransaccion = Session::get('id');
+        $amortizacion = TransaccionDetalle::findOrFail($id)->toArray();
+        TransaccionDetalle::destroy($id);
+        $this->updateTotal($idtransaccion);
+        return redirect()->route('amortizacion.list',$idtransaccion)
+                         ->with('success','Se ha Eliminado satisfactoriamente');
+    }
+
+    public function updateTotal($id)
+    {
+        $transaction = Transaccion::findOrFail($id);
+        $transaction->monto=TransaccionDetalle::SumaPagada($transaction->id)[0]['suma'];
+        $transaction->save();
     }
 }
