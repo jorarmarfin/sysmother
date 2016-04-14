@@ -10,7 +10,7 @@
 @stop
 
 @section('titulopagina')
-Administracion de Ahorro
+Administracion de Prestamos
 @stop
 
 @section('subtitulopagina')
@@ -25,28 +25,15 @@ Lista de Prestamos
 @section('cuerpo')
 @include('alerts.success')
 	<!-- Default box -->
-      <div class="box box-info">
+      <div class="box box-warning">
         <div class="box-header with-border">
-        	<a href="{{route('ahorro.create')}}" class="btn btn btn-primary">
-              <i class="fa fa fa-plus" ></i>
-              Nuevo Ahorro
-			</a>
-			<a href="{{route('prestamo.create')}}" class="btn btn btn-warning">
+			<a href="{{route('cliente.create')}}" class="btn btn btn-warning">
               <i class="fa fa fa-plus" ></i>
               Nuevo Cliente
 			</a>
-			<a href="{{route('ahorro.cierre')}}" class="btn btn btn-success">
-              <i class="fa fa fa-compress" ></i>
-              Cierre total
-			</a>
-			<a href="{{route('ahorro.apertura')}}" class="btn btn btn-info">
-              <i class="fa fa fa-expand" ></i>
-              Apertura total
-			</a>
-
           <br>
           <br>
-          <h3 class="box-title">Lista de Ahorristas</h3>
+          <h3 class="box-title">Lista de prestamos</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -59,39 +46,31 @@ Lista de Prestamos
 			    <thead>
 				    <tr>
 				      <th>Id</th>
-				      <th>Cliente</th>
-				      <th>Fecha</th>
-				      <th>Hora</th>
-				      <th>monto</th>
-				      <th>interes</th>
-				      <th>total</th>
-				      <th>estado</th>
+				      <th>nombres</th>
+				      <th>telefono</th>
+				      <th>celular</th>
 				      <th>Opciones</th>
 				    </tr>
 			    </thead>
 			    <tbody>
 			    @foreach($Lista as $lista)
-			    	@if($lista->estado=='Cerrado')
+			    	@if($lista->estado=='Pagado')
 			      		<tr class="info">
 			      	@else
 			      		<tr>
 			    	@endif
 			        <td>{{$lista->id}}</td>
 			        <td>{{$lista->nombres}}</td>
-			        <td>{{$lista->fecha}}</td>
-			        <td>{{$lista->hora}}</td>
-			        <td>{{$lista->monto}}</td>
-			        <td>{{$lista->interes}}</td>
-			        <td>{{$lista->total}}</td>
-			        <td>{{$lista->estado}}</td>
+			        <td>{{$lista->telefono}}</td>
+			        <td>{{$lista->celular}}</td>
 			        <td>
-			            <a href="{{route('ahorro.edit',$lista->id)}}" class="btn btn-primary" >
+			            <a href="{{route('prestamo.edit',$lista->id)}}" class="btn btn-primary" >
 			              <i class="fa fa-pencil" ></i>
 			            </a>
-			            <a href="{{route('ahorro.show',$lista->id)}}" class="btn btn-danger">
+			            <a href="{{route('prestamo.show',$lista->id)}}" class="btn btn-danger">
 			              <i class="fa fa-trash-o" ></i>
 			            </a>
-			            <a href="{{route('amortizacion.list',$lista->id)}}" class="btn btn-success">
+			            <a href="{{route('cuotas.list',$lista->id)}}" class="btn btn-success">
 			              <i class="fa fa-eye" ></i>
 			            </a>
 			        </td>
@@ -102,13 +81,9 @@ Lista de Prestamos
 			    <tfoot>
 			    <tr>
 			      <th>Id</th>
-			      <th>Cliente</th>
-			      <th>Fecha</th>
-			      <th>Hora</th>
-			      <th>monto</th>
-			      <th>interes</th>
-			      <th>total</th>
-			      <th>estado</th>
+			      <th>nombres</th>
+			      <th>telefono</th>
+			      <th>celular</th>
 			      <th>Opciones</th>
 			    </tr>
 			    </tfoot>

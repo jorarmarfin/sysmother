@@ -24,6 +24,7 @@ Lista de Amortizaciones
 
 @section('cuerpo')
 @include('alerts.success')
+@include('alerts.danger')
 	<!-- Default box -->
       <div class="box box-warning">
         <div class="box-header with-border">

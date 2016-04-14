@@ -16,6 +16,27 @@ use App\Http\Controllers\Controller;
 class AhorroController extends Controller
 {
     /**
+     * Funcion que cierra la scuentas de ahorristas
+     * @return route ruta de lista
+     */
+    public function apertura()
+    {
+        $id = Catalogo::IdCatalogo('TIPO TRANSACCION','Ahorro');
+        $ahorros = Transaccion::where('idtipo',$id)->update(['idestado' => 15]);;
+        return redirect()->route('ahorro.list')->with('success','Se ha abierto el banco completamente');
+    }
+
+    /**
+     * Funcion que cierra la scuentas de ahorristas
+     * @return route ruta de lista
+     */
+    public function cierre()
+    {
+        $id = Catalogo::IdCatalogo('TIPO TRANSACCION','Ahorro');
+        $ahorros = Transaccion::where('idtipo',$id)->update(['idestado' => 16]);;
+        return redirect()->route('ahorro.list')->with('success','Se ha cerrado el banco completamente');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

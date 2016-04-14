@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 
 use App\Http\Requests;
+use App\Http\Requests\AmortizacionRequest;
 use App\Http\Controllers\Controller;
 
 class AmortizacionController extends Controller
@@ -49,18 +50,24 @@ class AmortizacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AmortizacionRequest $request)
     {
-        $date = Carbon::now();
-        $data = $request->all();
-        $data['idtransaccion']=Session::get('id');
-        $data['salida']=0;
-        $data['fecha']=$date->toDateString('d-m-Y');;
-        $data['hora']=$date->toTimeString();
-        $transactionDetails = new TransaccionDetalle($data);
-        $transactionDetails->save();
-        $this->updateTotal($transactionDetails->idtransaccion);
-        return redirect()->back()->with('success','Se ha registrado la cuota satisfactoriamente');
+        $transaction = Transaccion::findOrFail(Session::get('id'));
+        if ($transaction->idestado==16) {
+            return redirect()->back()->with('danger','No se puede amortizar una cuenta cerrada');
+        } else {
+            $date = Carbon::now();
+            $data = $request->all();
+            $data['idtransaccion']=Session::get('id');
+            $data['salida']=0;
+            $data['fecha']=$date->toDateString('d-m-Y');;
+            $data['hora']=$date->toTimeString();
+            $transactionDetails = new TransaccionDetalle($data);
+            $transactionDetails->save();
+            $this->updateTotal($transactionDetails->idtransaccion);
+            return redirect()->back()->with('success','Se ha registrado la cuota satisfactoriamente');
+        }
+
     }
 
     /**

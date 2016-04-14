@@ -33,6 +33,8 @@ Route::group(['middleware'=> 'auth'],function(){
 Route::group(['prefix'=>'ahorro','namespace'=>'Ahorro','middleware'=> 'auth'],function(){
 
 	Route::get('list', ['uses' => 'AhorroController@index','as' => 'ahorro.list']);
+	Route::get('cierre', ['uses' => 'AhorroController@cierre','as' => 'ahorro.cierre']);
+	Route::get('apertura', ['uses' => 'AhorroController@apertura','as' => 'ahorro.apertura']);
 });
 
 Route::group(['middleware'=> 'auth'],function(){
@@ -72,6 +74,18 @@ Route::group(['middleware'=> 'auth'], function() {
 	'as' => 'home'
 	]);
 
+});
+
+/**
+ * Rutas de Clientes
+ */
+Route::group(['prefix'=>'cliente','namespace'=>'Cliente','middleware'=> 'auth'],function(){
+
+	Route::get('list', ['uses' => 'ClienteController@index','as' => 'cliente.list']);
+});
+
+Route::group(['middleware'=> 'auth'],function(){
+	Route::resource('cliente','Cliente\ClienteController');
 });
 
 // Authentication routes...

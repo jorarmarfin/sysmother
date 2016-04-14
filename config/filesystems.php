@@ -38,14 +38,14 @@ return [
     | Here you may configure as many filesystem "disks" as you wish, and you
     | may even configure multiple disks of the same driver. Defaults have
     | been setup for each driver as an example of the required options.
-    |
+    | 'root'   => storage_path('app'),
     */
 
     'disks' => [
 
         'local' => [
             'driver' => 'local',
-            'root'   => storage_path('app'),
+            'root'   => storage_path('app/fotos/'),
         ],
 
         'ftp' => [
