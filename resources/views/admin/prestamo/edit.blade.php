@@ -31,11 +31,6 @@ Lista de Prestamos
 	<!-- Default box -->
       <div class="box box-primary">
         <div class="box-header with-border">
-        	<a href="{{route('prestamo.create')}}" class="btn btn btn-primary">
-              <i class="fa fa fa-plus" ></i>
-              Nuevo Prestamo
-			</a>
-          <br>
           <br>
           <h3 class="box-title">Nuevo Prestamo</h3>
           <div class="box-tools pull-right">

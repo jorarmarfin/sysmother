@@ -10,7 +10,7 @@
 @stop
 
 @section('titulopagina')
-Administracion de Prestamos
+Administracion de Clientes
 @stop
 
 @section('subtitulopagina')
@@ -19,11 +19,12 @@ Administracion de Prestamos
 
 
 @section('titulocuerpo')
-Lista de Prestamos
+
 @stop
 
 @section('cuerpo')
 @include('alerts.success')
+@include('alerts.danger')
 	<!-- Default box -->
       <div class="box box-warning">
         <div class="box-header with-border">
@@ -33,7 +34,7 @@ Lista de Prestamos
 			</a>
           <br>
           <br>
-          <h3 class="box-title">Lista de prestamos</h3>
+          <h3 class="box-title">Lista de Clientes</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -54,23 +55,19 @@ Lista de Prestamos
 			    </thead>
 			    <tbody>
 			    @foreach($Lista as $lista)
-			    	@if($lista->estado=='Pagado')
-			      		<tr class="info">
-			      	@else
-			      		<tr>
-			    	@endif
+			      	<tr>
 			        <td>{{$lista->id}}</td>
 			        <td>{{$lista->nombres}}</td>
 			        <td>{{$lista->telefono}}</td>
 			        <td>{{$lista->celular}}</td>
 			        <td>
-			            <a href="{{route('prestamo.edit',$lista->id)}}" class="btn btn-primary" >
+			            <a href="{{route('cliente.edit',$lista->id)}}" class="btn btn-primary" >
 			              <i class="fa fa-pencil" ></i>
 			            </a>
-			            <a href="{{route('prestamo.show',$lista->id)}}" class="btn btn-danger">
+			            <a href="{{route('cliente.show',$lista->id)}}" class="btn btn-danger">
 			              <i class="fa fa-trash-o" ></i>
 			            </a>
-			            <a href="{{route('cuotas.list',$lista->id)}}" class="btn btn-success">
+			            <a href="{{route('cliente.mostrar',$lista->id)}}" class="btn btn-success">
 			              <i class="fa fa-eye" ></i>
 			            </a>
 			        </td>

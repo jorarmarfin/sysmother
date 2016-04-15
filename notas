@@ -39,3 +39,4 @@ php artisan make:request
 
 nombre del usuario
 {!!Auth::user()->name!!}
+b-;4ta?B}AnK

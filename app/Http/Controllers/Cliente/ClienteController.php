@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cliente;
 
 use App\Cliente;
+use App\Transaccion;
 
 use Storage;
 
@@ -13,6 +14,12 @@ use App\Http\Controllers\Controller;
 
 class ClienteController extends Controller
 {
+
+    public function mostrar($id)
+    {
+        $cliente = Cliente::findOrFail($id);
+        return view('admin.cliente.show',compact('cliente'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -42,7 +49,9 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cliente = new Cliente($request->all());
+        $cliente->save();
+        return redirect()->route('cliente.list')->with('success','Se ha registrado satisfactoriamente');
     }
 
     /**
@@ -53,7 +62,14 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-        //
+        $cnttransaction = Transaccion::where('idcliente',$id)->count();
+        if ($cnttransaction>0) {
+            return redirect()->back()->with('danger','No puede eliminar un cliente que tiene transacciones');
+        } else {
+            $cliente = Cliente::findOrFail($id);
+            return view('admin.cliente.delete',compact('cliente'));
+        }
+
     }
 
     /**
@@ -64,7 +80,8 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cliente = Cliente::findOrFail($id);
+        return view('admin.cliente.edit',compact('cliente'));
     }
 
     /**
@@ -76,7 +93,10 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cliente = Cliente::findOrFail($id);
+        $cliente->fill($request->all());
+        $cliente->save();
+        return redirect()->route('cliente.list')->with('success','Se ha editado satisfactoriamente');
     }
 
     /**
@@ -87,6 +107,8 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        Cliente::destroy($id);
+        return redirect()->route('cliente.list')->with('success','Se ha eliminado el prestamo');
     }
 }

@@ -20,14 +20,11 @@ Administracion de Clientes
 @stop
 
 @section('cuerpo')
-	{!!Form::open(['route'=> 'cliente.store','method'=> 'POST','class'=>''])!!}
-		@include('alerts.errors')
-		@include('alerts.success')
 	<!-- Default box -->
       <div class="box box-warning">
         <div class="box-header with-border">
           <br>
-          <h3 class="box-title">Nuevo Cliente</h3>
+          <h3 class="box-title">Cliente</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -39,42 +36,41 @@ Administracion de Clientes
         	<div class="row">
 
 				<div class='col-sm-12'>
-					{!!Form::label('lblNombre', 'Nombres')!!}</br>
-					{!!Form::text('nombres', null,['class'=>'form-control']);!!}</br>
+					<h3><strong>Nombre : </strong></h3>
+					<h4>{{$cliente->nombres}}</h4></br>
 				</div>
 				<div class='col-sm-2'>
-					{!!Form::label('lblDNI', 'DNI')!!}</br>
-					{!!Form::text('dni',null, ['class'=>'form-control','placeholder'=> 'ingrese su DNI'])!!}
+					<h3><strong>DNI : </strong></h3>
+					<h4>{{$cliente->dni}}</h4>
 				</div>
 				<div class='col-sm-2'>
-					{!!Form::label('lblTelefono', 'Telefono')!!}</br>
-					{!!Form::text('telefono',null, ['class'=>'form-control','placeholder'=> 'ingrese su Telefono'])!!}
+					<h3><strong>Telefono : </strong></h3>
+					<h4>{{$cliente->telefono}}</h4>
 				</div>
 
 				<div class='col-sm-2'>
-					{!!Form::label('lblCelular', 'Celular')!!}</br>
-					{!!Form::text('celular',null, ['class'=>'form-control','placeholder'=> 'ingrese su celular'])!!}
+					<h3><strong>Celular : </strong></h3>
+					<h4>{{$cliente->celular}}</h4>
 				</div>
 				<div class='col-sm-12'>
-					{!!Form::label('lblEmail', 'Email')!!}</br>
-					{!!Form::text('email', null,['class'=>'form-control','placeholder'=> 'ingrese su email']);!!}</br>
+					<h3><strong>Email : </strong></h3>
+					<h4>{{$cliente->email}}</h4></br>
 				</div>
 
 			</div>
 			<div class="row">
 				<div class='col-sm-12'>
-					{!!Form::label('lblDireccion', 'Direccion')!!}</br>
-					{!!Form::text('email', null,['class'=>'form-control','placeholder'=> 'ingrese su Direccion']);!!}</br>
+					<h3><strong>Direccion : </strong></h3>
+					<h4>{{$cliente->direccion}}</h4></br>
 				</div>
 				<div class='col-sm-12'>
-					{!!Form::label('lblTienda', 'Tienda')!!}</br>
-					{!!Form::text('tienda', null,['class'=>'form-control','placeholder'=> 'ingrese su Tienda']);!!}</br>
+					<h3><strong>Tienda : </strong></h3>
+					<h4>{{$cliente->tienda}}</h4></br>
 				</div>
 			</div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-        	{!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
         	<a href="{{route('cliente.list')}}" class="btn btn btn-success">
               Cancelar
 			</a>
@@ -82,7 +78,6 @@ Administracion de Clientes
         <!-- /.box-footer-->
       </div>
       <!-- /.box -->
-	{!!Form::close()!!}
 @stop
 
 @section('librerias')

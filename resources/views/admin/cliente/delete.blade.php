@@ -20,14 +20,20 @@ Administracion de Clientes
 @stop
 
 @section('cuerpo')
-	{!!Form::open(['route'=> 'cliente.store','method'=> 'POST','class'=>''])!!}
+	{!!Form::model($cliente,['route'=> ['cliente.destroy',$cliente],'method'=> 'DELETE','class'=>''])!!}
 		@include('alerts.errors')
 		@include('alerts.success')
 	<!-- Default box -->
       <div class="box box-warning">
         <div class="box-header with-border">
           <br>
-          <h3 class="box-title">Nuevo Cliente</h3>
+          <h3 class="box-title">
+          	<div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                Esta seguro que desea eliminar este Cliente no podra desahacer esta opcion
+              </div>
+          </h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -74,7 +80,7 @@ Administracion de Clientes
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-        	{!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
+        	{!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
         	<a href="{{route('cliente.list')}}" class="btn btn btn-success">
               Cancelar
 			</a>

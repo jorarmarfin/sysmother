@@ -82,6 +82,7 @@ Route::group(['middleware'=> 'auth'], function() {
 Route::group(['prefix'=>'cliente','namespace'=>'Cliente','middleware'=> 'auth'],function(){
 
 	Route::get('list', ['uses' => 'ClienteController@index','as' => 'cliente.list']);
+	Route::get('mostrar/{id}', ['uses' => 'ClienteController@mostrar','as' => 'cliente.mostrar']);
 });
 
 Route::group(['middleware'=> 'auth'],function(){
