@@ -89,6 +89,42 @@ Route::group(['middleware'=> 'auth'],function(){
 	Route::resource('cliente','Cliente\ClienteController');
 });
 
+/**
+ * Rutas de Ventas
+ */
+Route::group(['prefix'=>'venta','namespace'=>'Venta','middleware'=> 'auth'],function(){
+
+	Route::get('list', ['uses' => 'VentaController@index','as' => 'venta.list']);
+	Route::get('mostrar/{id}', ['uses' => 'VentaController@mostrar','as' => 'venta.mostrar']);
+});
+
+Route::group(['middleware'=> 'auth'],function(){
+	Route::resource('venta','Venta\VentaController');
+});
+
+/**
+ * Rutas de Venta Detalle
+ */
+Route::group(['prefix'=>'ventadetalle','namespace'=>'VentaDetalle','middleware'=> 'auth'],function(){
+
+	Route::get('list/{id}', ['uses' => 'VentaDetalleController@index','as' => 'ventadetalle.list']);
+});
+
+Route::group(['middleware'=> 'auth'],function(){
+	Route::resource('ventadetalle','ventadetalle\VentaDetalleController');
+});
+
+/**
+ * Rutas de Pagos
+ */
+Route::group(['prefix'=>'pagos','namespace'=>'Pagos','middleware'=> 'auth'],function(){
+
+	Route::get('list/{id}', ['uses' => 'PagosController@index','as' => 'pagos.list']);
+});
+
+Route::group(['middleware'=> 'auth'],function(){
+	Route::resource('pagos','pagos\PagosController');
+});
 // Authentication routes...
 Route::get('login', [
 	 'uses' => 'Auth\AuthController@getLogin',
