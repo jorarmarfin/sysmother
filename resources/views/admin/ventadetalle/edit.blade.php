@@ -12,7 +12,7 @@
 @stop
 
 @section('titulopagina')
-Administracion de Prestamos
+Administracion de Ventas
 @stop
 
 @section('subtitulopagina')
@@ -21,11 +21,10 @@ Administracion de Prestamos
 
 
 @section('titulocuerpo')
-Lista de Prestamos
 @stop
 
 @section('cuerpo')
-	{!!Form::model($cuota,['route'=> ['cuotas.update',$cuota],'method'=> 'PUT','class'=>''])!!}
+	{!!Form::model($ventadetalle,['route'=> ['ventadetalle.update',$ventadetalle],'method'=> 'PUT','class'=>''])!!}
 		@include('alerts.errors')
 		@include('alerts.success')
 	<!-- Default box -->
@@ -43,8 +42,12 @@ Lista de Prestamos
         <div class="box-body">
         	<div class="row">
         		<div class='col-sm-2'>
-					{!!Form::label('lblMonto', 'Monto')!!}</br>
-					{!!Form::text('entrada',null, ['class'=>'form-control','placeholder'=> 'Monto'])!!}
+					{!!Form::label('lblProducto', 'Producto')!!}</br>
+		            {!!Form::select('idproducto', ['-1' => 'Seleccionar Producto']+ $products,null,['class'=>'form-control','id'=>'idproducto']);!!}</br>
+		          </div>
+        		<div class='col-sm-2'>
+					{!!Form::label('lblCantidad', 'Cantidad')!!}</br>
+					{!!Form::text('cantidad',null, ['class'=>'form-control','placeholder'=> 'Cantidad'])!!}
 				</div>
 				<div class='col-sm-12'>
 					{!!Form::label('lblFecha', 'Fecha')!!}</br>
@@ -81,7 +84,7 @@ Lista de Prestamos
         <!-- /.box-body -->
         <div class="box-footer">
         	{!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
-        	<a href="{{route('cuotas.list',$cuota->idtransaccion)}}" class="btn btn btn-success">
+        	<a href="{{route('ventadetalle.list',$ventadetalle->idtransaccion)}}" class="btn btn btn-success">
               Cancelar
 			</a>
         </div>

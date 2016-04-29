@@ -111,7 +111,7 @@ Route::group(['prefix'=>'ventadetalle','namespace'=>'VentaDetalle','middleware'=
 });
 
 Route::group(['middleware'=> 'auth'],function(){
-	Route::resource('ventadetalle','ventadetalle\VentaDetalleController');
+	Route::resource('ventadetalle','VentaDetalle\VentaDetalleController');
 });
 
 /**

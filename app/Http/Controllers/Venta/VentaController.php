@@ -45,7 +45,7 @@ class VentaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TransactionRequest $request)
+    public function store(Request $request)
     {
         $data = $request->all();
         $data['idtipo']=11;

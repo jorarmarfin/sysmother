@@ -73,15 +73,6 @@ Administracion de Ventas
 		            </div>
 	            	</br>
 				</div>
-
-				<div class='col-sm-2'>
-					{!!Form::label('lblMonto', 'Monto')!!}</br>
-					{!!Form::text('monto',0, ['class'=>'form-control','placeholder'=> 'Monto'])!!}
-				</div>
-				<div class='col-sm-2'>
-					{!!Form::label('lblInteres', 'Interes')!!}</br>
-					{!!Form::text('interes',0, ['class'=>'form-control','placeholder'=> 'Interes'])!!}
-				</div>
 			</div>
         </div>
         <!-- /.box-body -->

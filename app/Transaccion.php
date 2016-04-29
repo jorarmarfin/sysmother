@@ -28,6 +28,22 @@ class Transaccion extends Model
     {
         return $this->hasMany('App\TransaccionDetalle','idtransaccion','id');
     }
+    /**
+     * Relacion con la tabla venta detalle
+     * @return [type] [description]
+     */
+    public function ventadetalle()
+    {
+        return $this->hasMany('App\VentaDetalle','idtransaccion','id');
+    }
+    /**
+     * Relacion con la tabla venta detalle y producto
+     * @return [type] [description]
+     */
+    public function producto()
+    {
+        return $this->belongsToMany('App\Producto', 'venta_detalle', 'idtransaccion', 'idproducto');
+    }
     #####################################################################
 	public function scopegetTransaccion($cadenaSQL,$id){
 		return $cadenaSQL->select(
@@ -60,4 +76,26 @@ class Transaccion extends Model
                             ->with('transacciondetalle')
                             ->get();
     }
+    /**
+     * Trae las cuotas de un prestamo
+     * @param  string $cadenaSQL consulta
+     * @param  idtipo $id        tipo de transaccion
+     * @return string            lista las cuotas
+     */
+    public function scopegetVentaDetalle($cadenaSQL,$idtipo,$id)
+    {
+        return $cadenaSQL->select(
+                                'transaccion.*'
+
+                                )
+                         ->Join('cliente','cliente.id','=','transaccion.idcliente')
+                         ->where('idtipo',$idtipo)
+                         ->where('transaccion.id',$id)
+                         ->with('ventadetalle')
+                         ->with('producto')
+                         ->get();
+    }
+
+
+
 }

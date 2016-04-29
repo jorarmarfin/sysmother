@@ -27,22 +27,22 @@ class VentaDetalle extends Model
 	                            'venta_detalle.fecha',
 	                            'venta_detalle.hora'
 	                            )
-	                       ->join('producto','producto.id','=','venta_detalle.idproducto')
-	                       ->join('transaccion','transaccion.id','=','venta_detalle.idtransaccion')
-	                       ->join('cliente','cliente.id','=','transaccion.idcliente')
+	                       ->Join('producto','producto.id','=','venta_detalle.idproducto')
+	                       ->Join('transaccion','transaccion.id','=','venta_detalle.idtransaccion')
+	                       ->Join('cliente','cliente.id','=','transaccion.idcliente')
 	                       ->where('idtransaccion',$id)
-	                       ->orderBy('id')
+	                       ->orderBy('venta_detalle.id')
 	                       ->get();
     }
 
     public function scopegetTotalVenta($cadenaSQL,$id)
     {
     	return $cadenaSQL->select(
-	                            DB::raw('venta_detalle.cantidad*producto.precio_venta ')
+	                            DB::raw('sum(cantidad*precio_venta) as total ')
 	                            )
 	                       ->join('producto','producto.id','=','venta_detalle.idproducto')
 	                       ->where('idtransaccion',$id)
-	                       ->orderBy('id')
+	                       ->orderBy('venta_detalle.id')
 	                       ->get();
     }
 

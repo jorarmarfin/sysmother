@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\VentaDetalle;
 
-use App\Transaccion;
-use App\Catalogo;
-use App\Cliente;
 use App\VentaDetalle;
+use App\Producto;
+use App\Transaccion;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -21,11 +22,15 @@ class VentaDetalleController extends Controller
      */
     public function index($id)
     {
-        // $Lista = VentaDetalle::getVentaDetalle($id);
-        // return view('admin.ventadetalle.list',compact('Lista'));
+        Session::put('id', $id);
+        $transaction = Transaccion::findOrFail($id);
+        $idtipo = $transaction->idtipo;
+        $Lista = Transaccion::getVentaDetalle($idtipo,$id);
+        // $resumen = VentaDetalle::getTotalVenta($id);
+        // $products = Producto::all()->lists('nombre','id')->toarray();
+        dd($Lista->toArray());
+        // return view('admin.ventadetalle.list',compact('Lista','resumen','products'));
 
-        $Lista = VentaDetalle::getTotalVenta($id);
-        dd($Lista);
     }
 
     /**
@@ -46,7 +51,17 @@ class VentaDetalleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $date = Carbon::now();
+        $data = $request->all();
+        $data['idtransaccion']=Session::get('id');
+        $data['fecha']=$date->toDateString('d-m-Y');;
+        $data['hora']=$date->toTimeString();
+        $ventadetalle = new VentaDetalle($data);
+        $ventadetalle->save();
+        $venta = Transaccion::findOrFail(Session::get('id'));
+        $venta->idestado=13;
+        $venta->save();
+        return redirect()->back()->with('success','Se ha registrado la venta satisfactoriamente');
     }
 
     /**
@@ -68,7 +83,9 @@ class VentaDetalleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $products = Producto::all()->lists('nombre','id')->toarray();
+        $ventadetalle = VentaDetalle::findOrFail($id);
+        return view('admin.ventadetalle.edit',compact('ventadetalle','products'));
     }
 
     /**
@@ -80,7 +97,12 @@ class VentaDetalleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ventadetalle = VentaDetalle::findOrFail($id);
+        $ventadetalle->fill($request->all());
+        $ventadetalle->save();
+        $venta = Transaccion::findOrFail(Session::get('id'));
+        return redirect()->route('ventadetalle.list',$ventadetalle->idtransaccion)
+                         ->with('success','Se ha editado satisfactoriamente');
     }
 
     /**

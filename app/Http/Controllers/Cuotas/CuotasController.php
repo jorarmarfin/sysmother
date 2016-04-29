@@ -140,7 +140,7 @@ class CuotasController extends Controller
                          ->with('success','Se ha Eliminado satisfactoriamente');
     }
     /**
-     * Calcula deuda descontando l acuota ingresada
+     * Calcula deuda descontando la cuota ingresada
      * @param  [type] $data [description]
      * @return [type]       [description]
      */
