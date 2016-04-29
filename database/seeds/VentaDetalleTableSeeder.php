@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class VentanaDetalleTableSeeder extends Seeder
+class VentaDetalleTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class VentanaDetalleTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\VentaDetalle::class,30)->create();
     }
 }

@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers\VentaDetalle;
 
+use App\Transaccion;
+use App\Catalogo;
+use App\Cliente;
+use App\VentaDetalle;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -14,9 +19,13 @@ class VentaDetalleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        echo "ventadetalle";
+        // $Lista = VentaDetalle::getVentaDetalle($id);
+        // return view('admin.ventadetalle.list',compact('Lista'));
+
+        $Lista = VentaDetalle::getTotalVenta($id);
+        dd($Lista);
     }
 
     /**

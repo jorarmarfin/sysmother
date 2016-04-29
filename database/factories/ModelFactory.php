@@ -116,3 +116,17 @@ $factory->define(App\Pedido::class, function ($faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+/*
+ * Tabla Venta Detalle
+ */
+$factory->define(App\VentaDetalle::class, function ($faker) {
+    return [
+        'idtransaccion' => $faker->numberBetween(1,30),
+        'idproducto' => $faker->numberBetween(1,20),
+        'cantidad' => $faker->randomDigitNotNull(),
+        'fecha' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'hora' => $faker->time($format = 'H:i:s', $max = 'now'),
+        'remember_token' => str_random(10),
+    ];
+});

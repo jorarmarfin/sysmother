@@ -44,14 +44,14 @@ Lista de Detalle Ventas
               <div class="widget-user-image">
               </div>
               <!-- /.widget-user-image -->
-              <h3 class="widget-user-username">{{$Lista[0]['nombres'] }}</h3>
-              <h5 class="widget-user-desc">cuotas del Cliente </h5>
+              <h3 class="widget-user-username">{{$Lista[0]['cliente'] }}</h3>
+              <h5 class="widget-user-desc">Productos comprados por el Cliente </h5>
             </div>
             <div class="box-footer no-padding col-sm-4">
               <ul class="nav nav-stacked">
-                <li><a href="#">Total <span class="pull-right badge bg-blue">{{$Lista[0]['total'] }}</span></a></li>
-                <li><a href="#">Pagado <span class="pull-right badge bg-green">{{$pagado[0]['suma'] }}</span></a></li>
-                <li><a href="#">Debe <span class="pull-right badge bg-red">{{$Lista[0]['total'] - $pagado[0]['suma'] }}</span></a></li>
+                <li><a href="#">Total Comprado<span class="pull-right badge bg-blue">100</span></a></li>
+                <li><a href="#">Pagado <span class="pull-right badge bg-green">100</span></a></li>
+                <li><a href="#">Debe <span class="pull-right badge bg-red">100</span></a></li>
               </ul>
             </div>
           </div>
@@ -67,28 +67,34 @@ Lista de Detalle Ventas
 			    <thead>
 				    <tr>
 				      <th>Id</th>
-				      <th>Entrada</th>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+				      <th>Total</th>
 				      <th>Fecha</th>
 				      <th>Hora</th>
 				      <th>Opciones</th>
 				    </tr>
 			    </thead>
 			    <tbody>
-			    @foreach($Lista[0]['transacciondetalle'] as $lista)
+			    @foreach($Lista as $lista)
 			    	@if($lista->estado=='Pagado')
 			      		<tr class="info">
 			      	@else
 			      		<tr>
 			    	@endif
 			        <td>{{$lista->id}}</td>
-			        <td>{{$lista->entrada}}</td>
+              <td>{{$lista->producto}}</td>
+              <td>{{$lista->cantidad}}</td>
+              <td>{{$lista->precio}}</td>
+			        <td>{{$lista->cantidad*$lista->precio}}</td>
 			        <td>{{$lista->fecha}}</td>
 			        <td>{{$lista->hora}}</td>
 			        <td>
-			            <a href="{{route('cuotas.edit',$lista->id)}}" class="btn btn-primary" >
+			            <a href="{{route('ventadetalle.edit',$lista->id)}}" class="btn btn-primary" >
 			              <i class="fa fa-pencil" ></i>
 			            </a>
-			            <a href="{{route('cuotas.show',$lista->id)}}" class="btn btn-danger">
+			            <a href="{{route('ventadetalle.show',$lista->id)}}" class="btn btn-danger">
 			              <i class="fa fa-trash-o" ></i>
 			            </a>
 			        </td>
@@ -99,10 +105,13 @@ Lista de Detalle Ventas
 			    <tfoot>
 			    <tr>
 			      <th>Id</th>
-			      <th>Entrada</th>
-			      <th>Fecha</th>
-			      <th>Hora</th>
-			      <th>Opciones</th>
+            <th>producto</th>
+            <th>cantidad</th>
+            <th>Precio</th>
+            <th>Total</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Opciones</th>
 			    </tr>
 			    </tfoot>
 			</table>
@@ -122,7 +131,7 @@ Lista de Detalle Ventas
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Nueva cuota de {{$Lista[0]['nombres'] }}</h4>
+        <h4 class="modal-title" id="myModalLabel">Nueva cuota de {{$Lista[0]['cliente'] }}</h4>
       </div>
       <div class="modal-body">
 
