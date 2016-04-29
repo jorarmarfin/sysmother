@@ -11,8 +11,8 @@
         <li><a href="{{route('ahorro.list')}}"><i class="fa fa-bank"></i> <span>Ahorros</span></a></li>
         <li><a href="{{route('cliente.list')}}"><i class="fa fa-user"></i> <span>Clientes</span></a></li>
         <li><a href="{{route('venta.list')}}"><i class="fa fa-shopping-cart"></i> <span>Ventas</span></a></li>
-        <li><a href="#"><i class="fa fa-list"></i> <span>Pedidos</span></a></li>
-        <li><a href="#"><i class="fa fa-cubes"></i> <span>Productos</span></a></li>
+        <li><a href="{{route('producto.list')}}"><i class="fa fa-th"></i> <span>Productos</span></a></li>
+        <li><a href="#"><i class="fa fa-registered"></i> <span>Region</span></a></li>
 
       </ul>
 

@@ -49,7 +49,6 @@ $factory->define(App\Producto::class, function ($faker) {
         'descuento' => $faker->randomFloat(2,1,100),
         'precio_venta' => $faker->randomFloat(2,1,100),
         'activo' => $faker->boolean,
-        'direccion' => $faker->address,
         'remember_token' => str_random(10),
 
     ];
@@ -78,7 +77,7 @@ $factory->define(App\Cliente::class, function ($faker) {
 $factory->define(App\Transaccion::class, function ($faker) {
     return [
         'idcliente' => $faker->numberBetween(1,20),
-        'idtipo' => $faker->randomElement($array = array (10,11,14)),
+        'idtipo' => $faker->randomElement($array = array (10,11,14,17)),
         'fecha' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'hora' => $faker->time($format = 'H:i:s', $max = 'now'),
         'monto' => $faker->numberBetween($min = 500, $max = 9000),
@@ -96,21 +95,6 @@ $factory->define(App\TransaccionDetalle::class, function ($faker) {
         'idtransaccion' => $faker->numberBetween(1,30),
         'entrada' => $faker->randomFloat($nbMaxDecimals = 2, $min = 1, $max = 100),
         'salida' => $faker->randomFloat($nbMaxDecimals = 2, $min = 1, $max = 100),
-        'fecha' => $faker->date($format = 'Y-m-d', $max = 'now'),
-        'hora' => $faker->time($format = 'H:i:s', $max = 'now'),
-        'remember_token' => str_random(10),
-    ];
-});
-
-/*
- * Tabla Pedido
- */
-$factory->define(App\Pedido::class, function ($faker) {
-    return [
-        'idtransaccion' => $faker->numberBetween(1,20),
-        'idproducto' => $faker->numberBetween(1,20),
-        'cantidad' => $faker->randomDigit,
-        'total' => $faker->randomFloat($nbMaxDecimals = 2, $min = 1, $max = 100),
         'fecha' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'hora' => $faker->time($format = 'H:i:s', $max = 'now'),
         'remember_token' => str_random(10),

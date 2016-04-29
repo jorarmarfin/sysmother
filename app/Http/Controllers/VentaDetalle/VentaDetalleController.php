@@ -26,10 +26,10 @@ class VentaDetalleController extends Controller
         $transaction = Transaccion::findOrFail($id);
         $idtipo = $transaction->idtipo;
         $Lista = Transaccion::getVentaDetalle($idtipo,$id);
-        // $resumen = VentaDetalle::getTotalVenta($id);
-        // $products = Producto::all()->lists('nombre','id')->toarray();
-        dd($Lista->toArray());
-        // return view('admin.ventadetalle.list',compact('Lista','resumen','products'));
+        $resumen = VentaDetalle::getTotalVenta($id);
+        $products = Producto::all()->lists('nombre','id')->toarray();
+        // dd($Lista->toArray());
+        return view('admin.ventadetalle.list',compact('Lista','resumen','products'));
 
     }
 
@@ -72,7 +72,9 @@ class VentaDetalleController extends Controller
      */
     public function show($id)
     {
-        //
+        $ventadetalle = VentaDetalle::findOrFail($id);
+        $products = Producto::all()->lists('nombre','id')->toarray();
+        return view('admin.ventadetalle.delete',compact('ventadetalle','products'));
     }
 
     /**
@@ -113,6 +115,8 @@ class VentaDetalleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ventadetalle::destroy($id);
+        return redirect()->route('ventadetalle.list',Session::get('id'))
+                         ->with('success','Se ha eliminado satisfactoriamente');
     }
 }

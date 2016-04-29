@@ -123,8 +123,21 @@ Route::group(['prefix'=>'pagos','namespace'=>'Pagos','middleware'=> 'auth'],func
 });
 
 Route::group(['middleware'=> 'auth'],function(){
-	Route::resource('pagos','pagos\PagosController');
+	Route::resource('pagos','Pagos\PagosController');
 });
+
+/**
+ * Rutas de Producto
+ */
+Route::group(['prefix'=>'producto','namespace'=>'Producto','middleware'=> 'auth'],function(){
+
+	Route::get('list', ['uses' => 'ProductoController@index','as' => 'producto.list']);
+});
+
+Route::group(['middleware'=> 'auth'],function(){
+	Route::resource('producto','Producto\ProductoController');
+});
+
 // Authentication routes...
 Route::get('login', [
 	 'uses' => 'Auth\AuthController@getLogin',

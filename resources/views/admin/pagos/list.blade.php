@@ -10,7 +10,7 @@
 @stop
 
 @section('titulopagina')
-Administracion de Prestamos
+Administracion de Pagos por ventas
 @stop
 
 @section('subtitulopagina')
@@ -19,7 +19,6 @@ Administracion de Prestamos
 
 
 @section('titulocuerpo')
-Lista de cuotas
 @stop
 
 @section('cuerpo')
@@ -30,11 +29,11 @@ Lista de cuotas
         <div class="box-header with-border">
         	<a href="#" class="btn btn btn-success" data-toggle="modal" data-target="#myModal">
               <i class="fa fa-plus" ></i>
-               Nueva Cuota
+               Nuevo Pago
 			</a>
-			<a href="{{route('prestamo.list')}}" class="btn btn btn-success">
+			<a href="{{route('venta.list')}}" class="btn btn btn-success">
               <i class="fa fa-mail-reply " ></i>
-               Regresar a Prestamos
+               Regresar a Ventas
 			</a>
           <br>
           <br>
@@ -45,13 +44,13 @@ Lista de cuotas
               </div>
               <!-- /.widget-user-image -->
               <h3 class="widget-user-username">{{$Lista[0]['nombres'] }}</h3>
-              <h5 class="widget-user-desc">cuotas del Cliente </h5>
+              <h5 class="widget-user-desc">Pagos del Cliente </h5>
             </div>
             <div class="box-footer no-padding col-sm-4">
               <ul class="nav nav-stacked">
-                <li><a href="#">Total <span class="pull-right badge bg-blue">{{$Lista[0]['total'] }}</span></a></li>
-                <li><a href="#">Pagado <span class="pull-right badge bg-green">{{$pagado[0]['suma'] }}</span></a></li>
-                <li><a href="#">Debe <span class="pull-right badge bg-red">{{$Lista[0]['total'] - $pagado[0]['suma'] }}</span></a></li>
+                <li><a href="#">Total Vendido<span class="pull-right badge bg-blue">{{$resumen[0]['total'] }}</span></a></li>
+                <li><a href="#">Total cobrado <span class="pull-right badge bg-green">{{$pagado[0]['suma'] }}</span></a></li>
+                <li><a href="#">Debe <span class="pull-right badge bg-red">{{$resumen[0]['total'] - $pagado[0]['suma'] }}</span></a></li>
               </ul>
             </div>
           </div>
@@ -85,10 +84,10 @@ Lista de cuotas
 			        <td>{{$lista->fecha}}</td>
 			        <td>{{$lista->hora}}</td>
 			        <td>
-			            <a href="{{route('cuotas.edit',$lista->id)}}" class="btn btn-primary" >
+			            <a href="{{route('pagos.edit',$lista->id)}}" class="btn btn-primary" >
 			              <i class="fa fa-pencil" ></i>
 			            </a>
-			            <a href="{{route('cuotas.show',$lista->id)}}" class="btn btn-danger">
+			            <a href="{{route('pagos.show',$lista->id)}}" class="btn btn-danger">
 			              <i class="fa fa-trash-o" ></i>
 			            </a>
 			        </td>
@@ -116,13 +115,13 @@ Lista de cuotas
       <!-- /.box -->
 
 <!-- Modal -->
-{!!Form::open(['route'=> 'cuotas.store','method'=> 'POST','class'=>''])!!}
+{!!Form::open(['route'=> 'pagos.store','method'=> 'POST','class'=>''])!!}
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Nueva cuota de {{$Lista[0]['nombres'] }}</h4>
+        <h4 class="modal-title" id="myModalLabel">Nuevo pago de {{$Lista[0]['nombres'] }}</h4>
       </div>
       <div class="modal-body">
 

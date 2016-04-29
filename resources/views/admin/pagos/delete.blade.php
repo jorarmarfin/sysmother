@@ -12,7 +12,7 @@
 @stop
 
 @section('titulopagina')
-Administracion de Prestamos
+Administracion de Pagos por ventas
 @stop
 
 @section('subtitulopagina')
@@ -21,11 +21,10 @@ Administracion de Prestamos
 
 
 @section('titulocuerpo')
-Lista de Prestamos
 @stop
 
 @section('cuerpo')
-	{!!Form::model($cuota,['route'=> ['cuotas.destroy',$cuota],'method'=> 'DELETE','class'=>''])!!}
+	{!!Form::model($pago,['route'=> ['pagos.destroy',$pago],'method'=> 'DELETE','class'=>''])!!}
 		@include('alerts.errors')
 		@include('alerts.success')
 	<!-- Default box -->
@@ -35,7 +34,7 @@ Lista de Prestamos
           <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-                Esta seguro que desea eliminar este prestamo no podra desahacer esta opcion
+                Esta seguro que desea eliminar este pago no podra desahacer esta opcion
               </div>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -85,7 +84,7 @@ Lista de Prestamos
         <!-- /.box-body -->
         <div class="box-footer">
         	{!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
-        	<a href="{{route('cuotas.list',$cuota->idtransaccion)}}" class="btn btn btn-success">
+        	<a href="{{route('pagos.list',$pago->idtransaccion)}}" class="btn btn btn-success">
               Cancelar
 			</a>
         </div>

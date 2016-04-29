@@ -10,7 +10,7 @@
 @stop
 
 @section('titulopagina')
-Administracion de Ventas
+Administracion de Productos
 @stop
 
 @section('subtitulopagina')
@@ -19,7 +19,7 @@ Administracion de Ventas
 
 
 @section('titulocuerpo')
-Lista de Ventas
+Lista de Productos
 @stop
 
 @section('cuerpo')
@@ -27,17 +27,17 @@ Lista de Ventas
 	<!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-        	<a href="{{route('venta.create')}}" class="btn btn btn-primary">
+        	<a href="{{route('producto.create')}}" class="btn btn btn-primary">
               <i class="fa fa fa-plus" ></i>
-              Nueva Venta
+              Nuevo Producto
 			</a>
-			<a href="{{route('prestamo.create')}}" class="btn btn btn-warning">
+			<a href="{{route('producto.create')}}" class="btn btn btn-warning">
               <i class="fa fa fa-plus" ></i>
               Nuevo Cliente
 			</a>
           <br>
           <br>
-          <h3 class="box-title">Lista de Ventas</h3>
+          <h3 class="box-title">Lista de prestamos</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -50,13 +50,13 @@ Lista de Ventas
 			    <thead>
 				    <tr>
 				      <th>Id</th>
-				      <th>Cliente</th>
-				      <th>Vendido</th>
-				      <th>Cobrado</th>
-				      <th>Debe</th>
-				      <th>Estado</th>
+				      <th>nombre</th>
 				      <th>Fecha</th>
 				      <th>Hora</th>
+				      <th>monto</th>
+				      <th>interes</th>
+				      <th>total</th>
+				      <th>estado</th>
 				      <th>Opciones</th>
 				    </tr>
 			    </thead>
@@ -68,25 +68,19 @@ Lista de Ventas
 			      		<tr>
 			    	@endif
 			        <td>{{$lista->id}}</td>
-			        <td>{{$lista->cliente}}</td>
-			        <td>{{$lista->vendido}}</td>
-			        <td>{{$lista->pagado}}</td>
-			        <td>{{$lista->vendido-$lista->pagado}}</td>
-			        <td>{{$lista->estado}}</td>
+			        <td>{{$lista->nombres}}</td>
 			        <td>{{$lista->fecha}}</td>
 			        <td>{{$lista->hora}}</td>
+			        <td>{{$lista->monto}}</td>
+			        <td>{{$lista->interes}}</td>
+			        <td>{{$lista->total}}</td>
+			        <td>{{$lista->estado}}</td>
 			        <td>
-			            <a href="{{route('venta.edit',$lista->id)}}" class="btn btn-primary" >
+			            <a href="{{route('producto.edit',$lista->id)}}" class="btn btn-primary" >
 			              <i class="fa fa-pencil" ></i>
 			            </a>
-			            <a href="{{route('venta.show',$lista->id)}}" class="btn btn-danger">
+			            <a href="{{route('producto.show',$lista->id)}}" class="btn btn-danger">
 			              <i class="fa fa-trash-o" ></i>
-			            </a>
-			            <a href="{{route('ventadetalle.list',$lista->id)}}" class="btn btn-warning">
-			              <i class="fa fa-shopping-cart" ></i>
-			            </a>
-			            <a href="{{route('pagos.list',$lista->id)}}" class="btn btn-success">
-			              <i class="fa fa-eye" ></i>
 			            </a>
 			        </td>
 			      </tr>
@@ -97,12 +91,12 @@ Lista de Ventas
 			    <tr>
 			      <th>Id</th>
 			      <th>Cliente</th>
-			      <th>Vendido</th>
-			      <th>Cobrado</th>
-			      <th>Debe</th>
-			      <th>Estado</th>
 			      <th>Fecha</th>
 			      <th>Hora</th>
+			      <th>monto</th>
+			      <th>interes</th>
+			      <th>total</th>
+			      <th>estado</th>
 			      <th>Opciones</th>
 			    </tr>
 			    </tfoot>

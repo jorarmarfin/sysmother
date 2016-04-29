@@ -12,7 +12,7 @@
 @stop
 
 @section('titulopagina')
-Administracion de Prestamos
+Administracion de Pagos por ventas
 @stop
 
 @section('subtitulopagina')
@@ -21,18 +21,17 @@ Administracion de Prestamos
 
 
 @section('titulocuerpo')
-Lista de Prestamos
 @stop
 
 @section('cuerpo')
-	{!!Form::model($cuota,['route'=> ['cuotas.update',$cuota],'method'=> 'PUT','class'=>''])!!}
+	{!!Form::model($pago,['route'=> ['pagos.update',$pago],'method'=> 'PUT','class'=>''])!!}
 		@include('alerts.errors')
 		@include('alerts.success')
 	<!-- Default box -->
       <div class="box box-warning">
         <div class="box-header with-border">
           <br>
-          <h3 class="box-title">Nuevo Cuota</h3>
+          <h3 class="box-title">Nuevo Pago</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -81,7 +80,7 @@ Lista de Prestamos
         <!-- /.box-body -->
         <div class="box-footer">
         	{!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
-        	<a href="{{route('cuotas.list',$cuota->idtransaccion)}}" class="btn btn btn-success">
+        	<a href="{{route('pagos.list',$pago->idtransaccion)}}" class="btn btn btn-success">
               Cancelar
 			</a>
         </div>

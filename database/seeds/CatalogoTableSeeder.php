@@ -139,5 +139,13 @@ class CatalogoTableSeeder extends Seeder
                 'descripcion'=> 'Estado 2',
                 'activo'=> TRUE
             ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 3,
+                'iditem'=> 4,
+                'codigo'=> 'Pago',
+                'nombre'=> 'Pago',
+                'descripcion'=> 'Pago',
+                'activo'=> TRUE
+            ]);
     }
 }

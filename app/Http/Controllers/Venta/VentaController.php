@@ -6,6 +6,7 @@ use App\Transaccion;
 use App\TransaccionDetalle;
 use App\Catalogo;
 use App\Cliente;
+use App\VentaDetalle;
 
 use Illuminate\Http\Request;
 
@@ -23,8 +24,7 @@ class VentaController extends Controller
     public function index()
     {
         $id = Catalogo::IdCatalogo('TIPO TRANSACCION','Venta');
-        $Lista = Transaccion::getTransaccion($id);
-        foreach ($Lista as $row)$row->Total=$row->Total;
+        $Lista = Transaccion::getVentas($id);
         return view('admin.venta.list',compact('Lista'));
     }
 

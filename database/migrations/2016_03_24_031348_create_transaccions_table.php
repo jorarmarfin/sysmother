@@ -18,7 +18,7 @@ class CreateTransaccionsTable extends Migration
             $table->integer('idtipo')->unsigned();
             $table->date('fecha');
             $table->time('hora');
-            $table->integer('monto');
+            $table->double('monto',10,2);
             $table->integer('interes');
             $table->integer('idestado')->unsigned();
             $table->rememberToken();

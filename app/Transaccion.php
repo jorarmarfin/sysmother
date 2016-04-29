@@ -2,6 +2,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Transaccion extends Model
 {
@@ -45,7 +46,8 @@ class Transaccion extends Model
         return $this->belongsToMany('App\Producto', 'venta_detalle', 'idtransaccion', 'idproducto');
     }
     #####################################################################
-	public function scopegetTransaccion($cadenaSQL,$id){
+	public function scopegetTransaccion($cadenaSQL,$id)
+    {
 		return $cadenaSQL->select(
                                 'transaccion.*',
                                 'cliente.nombres',
@@ -85,17 +87,41 @@ class Transaccion extends Model
     public function scopegetVentaDetalle($cadenaSQL,$idtipo,$id)
     {
         return $cadenaSQL->select(
-                                'transaccion.*'
-
+                                'transaccion.*',
+                                'venta_detalle.id',
+                                'cliente.nombres as cliente',
+                                'producto.nombre as producto',
+                                'venta_detalle.cantidad',
+                                'producto.precio_venta as precio',
+                                'venta_detalle.fecha',
+                                'venta_detalle.hora'
                                 )
-                         ->Join('cliente','cliente.id','=','transaccion.idcliente')
+                         ->leftJoin('venta_detalle','venta_detalle.idtransaccion','=','transaccion.id')
+                         ->leftJoin('producto','producto.id','=','venta_detalle.idproducto')
+                         ->leftJoin('cliente','cliente.id','=','transaccion.idcliente')
                          ->where('idtipo',$idtipo)
                          ->where('transaccion.id',$id)
-                         ->with('ventadetalle')
-                         ->with('producto')
                          ->get();
     }
-
+    public function scopegetVentas($cadenaSQL)
+    {
+        return $cadenaSQL->select(
+                                    'transaccion.id',
+                                    'cliente.nombres as cliente',
+                                    'transaccion.monto as pagado',
+                                    'transaccion.fecha',
+                                    'transaccion.hora',
+                                    'catalogo.nombre as estado',
+                                    DB::raw('sum(venta_detalle.cantidad*producto.precio_venta) as vendido')
+                                 )
+                         ->leftJoin('venta_detalle','venta_detalle.idtransaccion','=','transaccion.id')
+                         ->leftJoin('producto','producto.id','=','venta_detalle.idproducto')
+                         ->leftJoin('cliente','cliente.id','=','transaccion.idcliente')
+                         ->leftJoin('catalogo', 'catalogo.id', '=', 'transaccion.idestado')
+                         ->orderBy('transaccion.id','desc')
+                         ->groupBy('id','cliente','pagado','fecha','hora','estado')
+                         ->get();
+    }
 
 
 }
