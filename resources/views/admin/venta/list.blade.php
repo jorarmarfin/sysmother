@@ -50,6 +50,7 @@ Lista de Ventas
 			    <thead>
 				    <tr>
 				      <th>Id</th>
+				      <th>Lugar</th>
 				      <th>Cliente</th>
 				      <th>Vendido</th>
 				      <th>Cobrado</th>
@@ -68,6 +69,7 @@ Lista de Ventas
 			      		<tr>
 			    	@endif
 			        <td>{{$lista->id}}</td>
+			        <td>{{$lista->lugar}}</td>
 			        <td>{{$lista->cliente}}</td>
 			        <td>{{$lista->vendido}}</td>
 			        <td>{{$lista->pagado}}</td>
@@ -96,6 +98,7 @@ Lista de Ventas
 			    <tfoot>
 			    <tr>
 			      <th>Id</th>
+			      <th>Lugar</th>
 			      <th>Cliente</th>
 			      <th>Vendido</th>
 			      <th>Cobrado</th>

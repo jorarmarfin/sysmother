@@ -24,6 +24,7 @@ Lista de Productos
 
 @section('cuerpo')
 @include('alerts.success')
+@include('alerts.warning')
 	<!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
@@ -31,13 +32,9 @@ Lista de Productos
               <i class="fa fa fa-plus" ></i>
               Nuevo Producto
 			</a>
-			<a href="{{route('producto.create')}}" class="btn btn btn-warning">
-              <i class="fa fa fa-plus" ></i>
-              Nuevo Cliente
-			</a>
           <br>
           <br>
-          <h3 class="box-title">Lista de prestamos</h3>
+          <h3 class="box-title">Lista de Productos</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -51,30 +48,27 @@ Lista de Productos
 				    <tr>
 				      <th>Id</th>
 				      <th>nombre</th>
-				      <th>Fecha</th>
-				      <th>Hora</th>
-				      <th>monto</th>
-				      <th>interes</th>
-				      <th>total</th>
+				      <th>precio venta</th>
 				      <th>estado</th>
 				      <th>Opciones</th>
 				    </tr>
 			    </thead>
 			    <tbody>
 			    @foreach($Lista as $lista)
-			    	@if($lista->estado=='Pagado')
-			      		<tr class="info">
-			      	@else
-			      		<tr>
-			    	@endif
+			    	<tr>
 			        <td>{{$lista->id}}</td>
-			        <td>{{$lista->nombres}}</td>
-			        <td>{{$lista->fecha}}</td>
-			        <td>{{$lista->hora}}</td>
-			        <td>{{$lista->monto}}</td>
-			        <td>{{$lista->interes}}</td>
-			        <td>{{$lista->total}}</td>
-			        <td>{{$lista->estado}}</td>
+			        <td>{{$lista->nombre}}</td>
+			        <td>{{$lista->precio_venta}}</td>
+
+			        <td>
+			        	<a href="{{route('producto.estado',$lista->id)}}">
+			        	@if($lista->estado=='Activo')
+			      			<span class="label label-success">{{$lista->estado}}</span>
+				      	@else
+				      		<span class="label label-danger">{{$lista->estado}}</span>
+				    	@endif
+				    	</a>
+			        </td>
 			        <td>
 			            <a href="{{route('producto.edit',$lista->id)}}" class="btn btn-primary" >
 			              <i class="fa fa-pencil" ></i>
@@ -90,12 +84,8 @@ Lista de Productos
 			    <tfoot>
 			    <tr>
 			      <th>Id</th>
-			      <th>Cliente</th>
-			      <th>Fecha</th>
-			      <th>Hora</th>
-			      <th>monto</th>
-			      <th>interes</th>
-			      <th>total</th>
+			      <th>nombre</th>
+			      <th>precio venta</th>
 			      <th>estado</th>
 			      <th>Opciones</th>
 			    </tr>

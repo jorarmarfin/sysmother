@@ -83,6 +83,7 @@ $factory->define(App\Transaccion::class, function ($faker) {
         'monto' => $faker->numberBetween($min = 500, $max = 9000),
         'interes' => $faker->numberBetween($min = 2, $max = 9),
         'idestado' => $faker->randomElement($array = array (12,13,15,16)),
+        'idlugar' => $faker->randomElement($array = array (19,20,21,22,23)),
         'remember_token' => str_random(10),
     ];
 });

@@ -21,11 +21,13 @@ class CreateTransaccionsTable extends Migration
             $table->double('monto',10,2);
             $table->integer('interes');
             $table->integer('idestado')->unsigned();
+            $table->integer('idlugar')->unsigned();
             $table->rememberToken();
             $table->timestamps();
             $table->foreign('idcliente')->references('id')->on('cliente');
             $table->foreign('idtipo')->references('id')->on('catalogo');
             $table->foreign('idestado')->references('id')->on('catalogo');
+            $table->foreign('idlugar')->references('id')->on('catalogo');
         });
     }
 

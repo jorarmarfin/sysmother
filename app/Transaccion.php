@@ -7,7 +7,7 @@ use DB;
 class Transaccion extends Model
 {
     protected $table = 'transaccion';
-    protected $fillable = ['idcliente','idtipo','fecha','hora','monto','interes','idestado'];
+    protected $fillable = ['idcliente','idtipo','fecha','hora','monto','interes','idestado','idlugar'];
     protected $hidden = ['remember_token','idcliente','idtipo','idestado'];
     protected $guarded = [];
     // public $timestamps = false;
@@ -111,13 +111,15 @@ class Transaccion extends Model
                                     'transaccion.monto as pagado',
                                     'transaccion.fecha',
                                     'transaccion.hora',
-                                    'catalogo.nombre as estado',
+                                    'e.nombre as estado',
+                                    'l.nombre as lugar',
                                     DB::raw('sum(venta_detalle.cantidad*producto.precio_venta) as vendido')
                                  )
                          ->leftJoin('venta_detalle','venta_detalle.idtransaccion','=','transaccion.id')
                          ->leftJoin('producto','producto.id','=','venta_detalle.idproducto')
                          ->leftJoin('cliente','cliente.id','=','transaccion.idcliente')
-                         ->leftJoin('catalogo', 'catalogo.id', '=', 'transaccion.idestado')
+                         ->leftJoin('catalogo as e', 'e.id', '=', 'transaccion.idestado')
+                         ->leftJoin('catalogo as l', 'l.id', '=', 'transaccion.idlugar')
                          ->orderBy('transaccion.id','desc')
                          ->groupBy('id','cliente','pagado','fecha','hora','estado')
                          ->get();

@@ -1,10 +1,7 @@
 @extends('layouts.admin')
 
 @section('links')
-<!-- bootstrap datepicker -->
-  <link rel="stylesheet" href={{asset("plugins/datepicker/datepicker3.css")}}>
-<!-- Bootstrap time Picker -->
-  <link rel="stylesheet" href={{asset("plugins/timepicker/bootstrap-timepicker.min.css")}}>
+
 @stop
 
 @section('nombreusuario')
@@ -12,7 +9,7 @@
 @stop
 
 @section('titulopagina')
-Administracion de Prestamos
+Administracion de Productos
 @stop
 
 @section('subtitulopagina')
@@ -21,18 +18,17 @@ Administracion de Prestamos
 
 
 @section('titulocuerpo')
-Lista de Prestamos
 @stop
 
 @section('cuerpo')
-	{!!Form::model($prestamo,['route'=> ['prestamo.update',$prestamo],'method'=> 'PUT','class'=>''])!!}
+	{!!Form::model($producto,['route'=> ['producto.update',$producto],'method'=> 'PUT','class'=>''])!!}
 		@include('alerts.errors')
 		@include('alerts.success')
 	<!-- Default box -->
       <div class="box box-primary">
         <div class="box-header with-border">
           <br>
-          <h3 class="box-title">Nuevo Prestamo</h3>
+          <h3 class="box-title">Nuevo Producto</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -42,53 +38,20 @@ Lista de Prestamos
         </div>
         <div class="box-body">
         	<div class="row">
-				<div class='col-sm-12'>
-					{!!Form::label('lblIdCliente', 'Cliente')!!}</br>
-					{!!Form::select('idcliente', ['-1' => 'Seleccionar Cliente']+ $clientes,null,['class'=>'form-control','id'=>'idcliente']);!!}</br>
+        		<div class='col-sm-12'>
+					{!!Form::label('lblNombre', 'Nombre')!!}</br>
+					{!!Form::text('nombre',null, ['class'=>'form-control','placeholder'=> 'Nombre'])!!}</br>
 				</div>
 				<div class='col-sm-12'>
-					{!!Form::label('lblFecha', 'Fecha')!!}</br>
-					<div class="input-group date">
-	                  <div class="input-group-addon">
-	                    <i class="fa fa-calendar"></i>
-	                  </div>
-	                  {!!Form::text('fecha',null, ['class'=>'form-control pull-right','id'=> 'datepicker'])!!}
-
-	                </div>
-	            	</br>
-				</div>
-				<div class='col-sm-12'>
-					{!!Form::label('lblHora', 'Hora')!!}</br>
-					<div class="bootstrap-timepicker">
-		                <div class="form-group">
-		                  <div class="input-group">
-		                    <div class="input-group-addon">
-		                      <i class="fa fa-clock-o"></i>
-		                    </div>
-		                    <input name="hora" type="text" class="form-control timepicker">
-
-		                  </div>
-		                  <!-- /.input group -->
-		                </div>
-		                <!-- /.form group -->
-		            </div>
-	            	</br>
-				</div>
-
-				<div class='col-sm-2'>
-					{!!Form::label('lblMonto', 'Monto')!!}</br>
-					{!!Form::text('monto',null, ['class'=>'form-control','placeholder'=> 'Monto'])!!}
-				</div>
-				<div class='col-sm-2'>
-					{!!Form::label('lblInteres', 'Interes')!!}</br>
-					{!!Form::text('interes',null, ['class'=>'form-control','placeholder'=> 'Interes'])!!}
+					{!!Form::label('lblprecioVenta', 'precioVenta')!!}</br>
+					{!!Form::text('precio_venta',null, ['class'=>'form-control','placeholder'=> 'precio de venta'])!!}</br>
 				</div>
 			</div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
         	{!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
-        	<a href="{{route('prestamo.list')}}" class="btn btn btn-success">
+        	<a href="{{route('producto.list')}}" class="btn btn btn-success">
               Cancelar
 			</a>
         </div>
@@ -110,16 +73,5 @@ Lista de Prestamos
 @stop
 
 @section('javascript')
-<script>
-	//Date picker
-	    $('#datepicker').datepicker({
-	      autoclose: true,
-      	  format: "yyyy-mm-dd"
-	    });
-	    // $('#datepicker').inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-	//Timepicker
-	    $(".timepicker").timepicker({
-	      showInputs: false
-	    });
-</script>
+
 @stop

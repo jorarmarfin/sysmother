@@ -36,7 +36,8 @@ class VentaController extends Controller
     public function create()
     {
         $clientes = Cliente::all()->lists('nombres','id')->toarray();
-        return view('admin.venta.create',compact('clientes'));
+        $lugar = Catalogo::Combo('LUGAR')->get()->lists('nombre','id')->toarray();
+        return view('admin.venta.create',compact('clientes','lugar'));
     }
 
     /**
@@ -87,8 +88,9 @@ class VentaController extends Controller
         if ($Estado->nombre=='Pagado') {
             return redirect()->route('venta.list')->with('success','No puede editar una Venta pagada');
         }else{
+            $lugar = Catalogo::Combo('LUGAR')->get()->lists('nombre','id')->toarray();
             $clientes = Cliente::all()->lists('nombres','id')->toarray();
-            return view('admin.venta.edit',compact('clientes','venta'));
+            return view('admin.venta.edit',compact('clientes','venta','lugar'));
         }
     }
 

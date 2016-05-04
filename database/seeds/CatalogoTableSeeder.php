@@ -147,5 +147,53 @@ class CatalogoTableSeeder extends Seeder
                 'descripcion'=> 'Pago',
                 'activo'=> TRUE
             ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 0,
+                'iditem'=> 5,
+                'codigo'=> 'LUGAR',
+                'nombre'=> 'LUGAR',
+                'descripcion'=> 'LUGAR DONDE SE REALIZAN LAS VENTAS',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 5,
+                'iditem'=> 1,
+                'codigo'=> 'Juliaca',
+                'nombre'=> 'Juliaca',
+                'descripcion'=> 'Juliaca',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 5,
+                'iditem'=> 2,
+                'codigo'=> 'Arequipa',
+                'nombre'=> 'Arequipa',
+                'descripcion'=> 'Arequipa',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 5,
+                'iditem'=> 3,
+                'codigo'=> 'Huanuco',
+                'nombre'=> 'Huanuco',
+                'descripcion'=> 'Huanuco',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 5,
+                'iditem'=> 4,
+                'codigo'=> 'Pucallpa',
+                'nombre'=> 'Pucallpa',
+                'descripcion'=> 'Pucallpa',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 5,
+                'iditem'=> 5,
+                'codigo'=> 'Huancayo',
+                'nombre'=> 'Huancayo',
+                'descripcion'=> 'Huancayo',
+                'activo'=> TRUE
+            ]);
     }
 }

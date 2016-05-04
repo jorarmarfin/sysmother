@@ -132,6 +132,7 @@ Route::group(['middleware'=> 'auth'],function(){
 Route::group(['prefix'=>'producto','namespace'=>'Producto','middleware'=> 'auth'],function(){
 
 	Route::get('list', ['uses' => 'ProductoController@index','as' => 'producto.list']);
+	Route::get('estado/{id}', ['uses' => 'ProductoController@estado','as' => 'producto.estado']);
 });
 
 Route::group(['middleware'=> 'auth'],function(){

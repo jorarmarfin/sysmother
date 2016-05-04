@@ -1,10 +1,7 @@
 @extends('layouts.admin')
 
 @section('links')
-<!-- bootstrap datepicker -->
-  <link rel="stylesheet" href={{asset("plugins/datepicker/datepicker3.css")}}>
-<!-- Bootstrap time Picker -->
-  <link rel="stylesheet" href={{asset("plugins/timepicker/bootstrap-timepicker.min.css")}}>
+
 @stop
 
 @section('nombreusuario')
@@ -12,7 +9,7 @@
 @stop
 
 @section('titulopagina')
-Administracion de Prestamos
+Administracion de Productos
 @stop
 
 @section('subtitulopagina')
@@ -21,11 +18,10 @@ Administracion de Prestamos
 
 
 @section('titulocuerpo')
-Lista de Prestamos
 @stop
 
 @section('cuerpo')
-	{!!Form::model($prestamo,['route'=> ['prestamo.destroy',$prestamo],'method'=> 'DELETE','class'=>''])!!}
+	{!!Form::model($producto,['route'=> ['producto.destroy',$producto],'method'=> 'DELETE','class'=>''])!!}
 		@include('alerts.errors')
 		@include('alerts.success')
 	<!-- Default box -->
@@ -36,7 +32,7 @@ Lista de Prestamos
           	<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-                Esta seguro que desea eliminar este prestamo no podra desahacer esta opcion
+                Esta seguro que desea eliminar este producto no podra desahacer esta opcion
               </div>
           </h3>
           <div class="box-tools pull-right">
@@ -48,53 +44,20 @@ Lista de Prestamos
         </div>
         <div class="box-body">
         	<div class="row">
-				<div class='col-sm-12'>
-					{!!Form::label('lblIdCliente', 'Cliente')!!}</br>
-					{!!Form::select('idcliente', ['-1' => 'Seleccionar Cliente']+ $clientes,null,['class'=>'form-control','id'=>'idcliente']);!!}</br>
+        		<div class='col-sm-12'>
+					{!!Form::label('lblNombre', 'Nombre')!!}</br>
+					{!!Form::text('nombre',null, ['class'=>'form-control','placeholder'=> 'Nombre'])!!}</br>
 				</div>
 				<div class='col-sm-12'>
-					{!!Form::label('lblFecha', 'Fecha')!!}</br>
-					<div class="input-group date">
-	                  <div class="input-group-addon">
-	                    <i class="fa fa-calendar"></i>
-	                  </div>
-	                  {!!Form::text('fecha',null, ['class'=>'form-control pull-right','id'=> 'datepicker'])!!}
-
-	                </div>
-	            	</br>
-				</div>
-				<div class='col-sm-12'>
-					{!!Form::label('lblHora', 'Hora')!!}</br>
-					<div class="bootstrap-timepicker">
-		                <div class="form-group">
-		                  <div class="input-group">
-		                    <div class="input-group-addon">
-		                      <i class="fa fa-clock-o"></i>
-		                    </div>
-		                    <input name="hora" type="text" class="form-control timepicker">
-
-		                  </div>
-		                  <!-- /.input group -->
-		                </div>
-		                <!-- /.form group -->
-		            </div>
-	            	</br>
-				</div>
-
-				<div class='col-sm-2'>
-					{!!Form::label('lblMonto', 'Monto')!!}</br>
-					{!!Form::text('monto',null, ['class'=>'form-control','placeholder'=> 'Monto'])!!}
-				</div>
-				<div class='col-sm-2'>
-					{!!Form::label('lblInteres', 'Interes')!!}</br>
-					{!!Form::text('interes',null, ['class'=>'form-control','placeholder'=> 'Interes'])!!}
+					{!!Form::label('lblprecioVenta', 'precioVenta')!!}</br>
+					{!!Form::text('precio_venta',null, ['class'=>'form-control','placeholder'=> 'precio de venta'])!!}</br>
 				</div>
 			</div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
         	{!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
-        	<a href="{{route('prestamo.list')}}" class="btn btn btn-success">
+        	<a href="{{route('producto.list')}}" class="btn btn btn-success">
               Cancelar
 			</a>
         </div>
@@ -109,23 +72,8 @@ Lista de Prestamos
 <script src={{asset("plugins/fastclick/fastclick.js")}}></script>
 <!-- AdminLTE for demo purposes -->
 <script src={{asset("dist/js/demo.js")}}></script>
-<!-- bootstrap datepicker -->
-<script src={{asset("plugins/datepicker/bootstrap-datepicker.js")}}></script>
-<!-- bootstrap time picker -->
-<script src={{asset("plugins/timepicker/bootstrap-timepicker.min.js")}}></script>
 @stop
 
 @section('javascript')
-<script>
-	//Date picker
-	    $('#datepicker').datepicker({
-	      autoclose: true,
-      	  format: "dd-mm-yyyy"
-	    });
-	    // $('#datepicker').inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-	//Timepicker
-	    $(".timepicker").timepicker({
-	      showInputs: false
-	    });
-</script>
+
 @stop
