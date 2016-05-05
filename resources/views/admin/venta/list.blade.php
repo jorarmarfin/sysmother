@@ -31,10 +31,6 @@ Lista de Ventas
               <i class="fa fa fa-plus" ></i>
               Nueva Venta
 			</a>
-			<a href="{{route('prestamo.create')}}" class="btn btn btn-warning">
-              <i class="fa fa fa-plus" ></i>
-              Nuevo Cliente
-			</a>
           <br>
           <br>
           <h3 class="box-title">Lista de Ventas</h3>

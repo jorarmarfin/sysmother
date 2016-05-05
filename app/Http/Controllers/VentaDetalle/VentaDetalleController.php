@@ -28,7 +28,6 @@ class VentaDetalleController extends Controller
         $Lista = Transaccion::getVentaDetalle($idtipo,$id);
         $resumen = VentaDetalle::getTotalVenta($id);
         $products = Producto::where('activo','1')->orderBy('nombre')->get()->lists('nombre','id')->toarray();
-        // dd($Lista->toArray());
         return view('admin.ventadetalle.list',compact('Lista','resumen','products'));
 
     }

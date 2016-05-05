@@ -31,10 +31,6 @@ Lista de Prestamos
               <i class="fa fa fa-plus" ></i>
               Nuevo Ahorro
 			</a>
-			<a href="{{route('prestamo.create')}}" class="btn btn btn-warning">
-              <i class="fa fa fa-plus" ></i>
-              Nuevo Cliente
-			</a>
 			<a href="{{route('ahorro.cierre')}}" class="btn btn btn-success">
               <i class="fa fa fa-compress" ></i>
               Cierre total

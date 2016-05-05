@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CatalogoTableSeeder::class);
         $this->call(UserTableSeeder::class);
-        $this->call(ProductoTableSeeder::class);
-        $this->call(ClienteTableSeeder::class);
-        $this->call(TransaccionTableSeeder::class);
-        $this->call(TransaccionDetalleTableSeeder::class);
-        $this->call(VentaDetalleTableSeeder::class);
+        // $this->call(ProductoTableSeeder::class);
+        // $this->call(ClienteTableSeeder::class);
+        // $this->call(TransaccionTableSeeder::class);
+        // $this->call(TransaccionDetalleTableSeeder::class);
+        // $this->call(VentaDetalleTableSeeder::class);
 
         Model::reguard();
     }
