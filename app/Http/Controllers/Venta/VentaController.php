@@ -117,12 +117,12 @@ class VentaController extends Controller
      */
     public function destroy($id)
     {
-        // $cntPagos = TransaccionDetalle::where('idtransaccion',$id)->count();
-        // if ($cntPagos==0) {
+        $cntPagos = TransaccionDetalle::where('idtransaccion',$id)->count();
+        if ($cntPagos==0) {
             Transaccion::destroy($id);
-            return redirect()->route('venta.list')->with('success','Se ha eliminado el prestamo');
-        // } else {
-        //     return redirect()->route('venta.list')->with('success','Esta venta tiene pagos no se puede eliminar');
-        // }
+            return redirect()->route('venta.list')->with('success','Se ha eliminado la venta');
+        } else {
+            return redirect()->route('venta.list')->with('success','Esta venta tiene pagos no se puede eliminar');
+        }
     }
 }

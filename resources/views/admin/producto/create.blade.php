@@ -43,7 +43,7 @@ Administracion de Productos
 					{!!Form::text('nombre',null, ['class'=>'form-control','placeholder'=> 'Nombre'])!!}</br>
 				</div>
 				<div class='col-sm-12'>
-					{!!Form::label('lblprecioVenta', 'precioVenta')!!}</br>
+					{!!Form::label('lblprecioVenta', 'Precio de Venta')!!}</br>
 					{!!Form::text('precio_venta',null, ['class'=>'form-control','placeholder'=> 'precio de venta'])!!}</br>
 				</div>
 			</div>

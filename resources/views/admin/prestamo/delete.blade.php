@@ -48,6 +48,10 @@ Lista de Prestamos
         </div>
         <div class="box-body">
         	<div class="row">
+        		<div class='col-sm-12'>
+					{!!Form::label('lblIdLugar', 'Lugar')!!}</br>
+					{!!Form::select('idlugar', ['-1' => 'Seleccionar Lugar']+ $lugar,null,['class'=>'form-control','id'=>'idlugar']);!!}</br>
+				</div>
 				<div class='col-sm-12'>
 					{!!Form::label('lblIdCliente', 'Cliente')!!}</br>
 					{!!Form::select('idcliente', ['-1' => 'Seleccionar Cliente']+ $clientes,null,['class'=>'form-control','id'=>'idcliente']);!!}</br>

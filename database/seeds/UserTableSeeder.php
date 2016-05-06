@@ -26,6 +26,6 @@ class UserTableSeeder extends Seeder
             'idrole' => '6',
 
             ]);
-        factory(App\User::class,10)->create();
+        //factory(App\User::class,10)->create();
     }
 }

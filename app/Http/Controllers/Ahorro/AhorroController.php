@@ -57,7 +57,8 @@ class AhorroController extends Controller
     public function create()
     {
         $clientes = Cliente::all()->lists('nombres','id')->toarray();
-        return view('admin.ahorro.create',compact('clientes'));
+        $lugar = Catalogo::Combo('LUGAR')->get()->lists('nombre','id')->toarray();
+        return view('admin.ahorro.create',compact('clientes','lugar'));
     }
 
     /**
@@ -66,7 +67,7 @@ class AhorroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TransactionRequest $request)
+    public function store(Request $request)
     {
         $data = $request->all();
         $data['idtipo']=14;
@@ -109,7 +110,8 @@ class AhorroController extends Controller
             return redirect()->route('ahorro.list')->with('success','No puede editar un ahorro abierto');
         }else{
             $clientes = Cliente::all()->lists('nombres','id')->toarray();
-            return view('admin.ahorro.edit',compact('clientes','ahorro'));
+            $lugar = Catalogo::Combo('LUGAR')->get()->lists('nombre','id')->toarray();
+            return view('admin.ahorro.edit',compact('clientes','ahorro','lugar'));
         }
     }
 
