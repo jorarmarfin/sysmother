@@ -36,6 +36,10 @@ Lista de Detalle Ventas
               <i class="fa fa-mail-reply " ></i>
                Regresar a Ventas
 			</a>
+      <a href="{{route('ventadetalle.imprimir')}}" class="btn btn btn-primary">
+              <i class="fa fa-print " ></i>
+               Imprimir
+      </a>
           <br>
           <br>
           <div class="box box-widget widget-user-2 col-sm-6">

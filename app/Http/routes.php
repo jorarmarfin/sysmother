@@ -108,6 +108,8 @@ Route::group(['middleware'=> 'auth'],function(){
 Route::group(['prefix'=>'ventadetalle','namespace'=>'VentaDetalle','middleware'=> 'auth'],function(){
 
 	Route::get('list/{id}', ['uses' => 'VentaDetalleController@index','as' => 'ventadetalle.list']);
+	Route::get('imprimir', ['uses' => 'VentaDetalleController@imprimir','as' => 'ventadetalle.imprimir']);
+	Route::get('showpdf', ['uses' => 'VentaDetalleController@showpdf','as' => 'ventadetalle.showpdf']);
 });
 
 Route::group(['middleware'=> 'auth'],function(){

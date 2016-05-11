@@ -150,6 +150,11 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
 
+        /**
+         * Para crear archivos pdf
+         */
+        Elibyy\TCPDF\ServiceProvider::class,
+
     ],
 
     /*
@@ -204,6 +209,12 @@ return [
          */
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+
+        /**
+         * Para crear pdf
+         */
+        'PDF' => Elibyy\TCPDF\Facades\TCPDF::class,
+
     ],
 
 ];
