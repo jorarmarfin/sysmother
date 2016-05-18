@@ -77,7 +77,7 @@ $factory->define(App\Cliente::class, function ($faker) {
 $factory->define(App\Transaccion::class, function ($faker) {
     return [
         'idcliente' => $faker->numberBetween(1,20),
-        'idtipo' => $faker->randomElement($array = array (10,11,14,17)),
+        'idtipo' => $faker->randomElement($array = array (10,11,14,17,24)),
         'fecha' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'hora' => $faker->time($format = 'H:i:s', $max = 'now'),
         'monto' => $faker->numberBetween($min = 500, $max = 9000),

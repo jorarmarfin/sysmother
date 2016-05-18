@@ -16,6 +16,30 @@ Route::get('/', [
 	]);
 
 /**
+ * Rutas de Cuentas
+ */
+Route::group(['prefix'=>'cuentas','namespace'=>'Cuentas','middleware'=> 'auth'],function(){
+
+	Route::get('list', ['uses' => 'CuentasController@index','as' => 'cuentas.list']);
+});
+
+Route::group(['middleware'=> 'auth'],function(){
+	Route::resource('cuentas','Cuentas\CuentasController');
+});
+
+/**
+ * Rutas de Cuotas
+ */
+Route::group(['prefix'=>'cuentasdetalles','namespace'=>'CuentasDetalles','middleware'=> 'auth'],function(){
+
+	Route::get('list/{id}', ['uses' => 'CuentasDetallesController@index','as' => 'cuentasdetalles.list']);
+});
+
+Route::group(['middleware'=> 'auth'],function(){
+	Route::resource('cuentasdetalles','CuentasDetalles\CuentasDetallesController');
+});
+
+/**
  * Rutas de Prestamo
  */
 Route::group(['prefix'=>'prestamo','namespace'=>'Prestamo','middleware'=> 'auth'],function(){

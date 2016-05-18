@@ -12,7 +12,7 @@
         <li><a href="{{route('cliente.list')}}"><i class="fa fa-user"></i> <span>Clientes</span></a></li>
         <li><a href="{{route('venta.list')}}"><i class="fa fa-shopping-cart"></i> <span>Ventas</span></a></li>
         <li><a href="{{route('producto.list')}}"><i class="fa fa-th"></i> <span>Productos</span></a></li>
-        <li><a href="#"><i class="fa fa-registered"></i> <span>Region</span></a></li>
+        <li><a href="{{route('cuentas.list')}}"><i class="fa fa-book"></i> <span>Cuentas</span></a></li>
 
       </ul>
 

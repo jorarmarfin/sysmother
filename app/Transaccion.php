@@ -103,6 +103,7 @@ class Transaccion extends Model
                          ->where('transaccion.id',$id)
                          ->get();
     }
+
     public function scopegetVentas($cadenaSQL,$id)
     {
         return $cadenaSQL->select(
@@ -135,6 +136,28 @@ class Transaccion extends Model
                          ->leftJoin('catalogo as e','e.id','=','transaccion.idestado')
                          ->where('tt.nombre',$tipo)
                          ->where('e.nombre',$estado)
+                         ->get();
+    }
+    /**
+     * Detalle de las cuentas
+     * @param  [type] $cadenaSQL [description]
+     * @param  [type] $idtipo    [description]
+     * @param  [type] $id        [description]
+     * @return [type]            [description]
+     */
+    public function scopegetDetalleCuentas($cadenaSQL,$id)
+    {
+        return $cadenaSQL->select(
+                                'transaccion.*',
+                                'c.nombres as cliente',
+                                'td.entrada',
+                                'td.salida',
+                                'td.fecha',
+                                'td.hora'
+                                )
+                         ->leftJoin('transaccion_detalle as td','td.idtransaccion','=','transaccion.id')
+                         ->Join('cliente as c','c.id','=','transaccion.idcliente')
+                         ->where('transaccion.id',$id)
                          ->get();
     }
 }

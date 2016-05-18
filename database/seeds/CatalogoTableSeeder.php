@@ -195,5 +195,13 @@ class CatalogoTableSeeder extends Seeder
                 'descripcion'=> 'Huancayo',
                 'activo'=> TRUE
             ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 3,
+                'iditem'=> 5,
+                'codigo'=> 'Cuentas',
+                'nombre'=> 'Cuentas',
+                'descripcion'=> 'Cuentas varias',
+                'activo'=> TRUE
+            ]);
     }
 }

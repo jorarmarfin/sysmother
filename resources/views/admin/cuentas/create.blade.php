@@ -12,33 +12,23 @@
 @stop
 
 @section('titulopagina')
-Administracion de Prestamos
+Administracion de Cuentas
 @stop
 
 @section('subtitulopagina')
 
 @stop
 
-
-@section('titulocuerpo')
-Lista de Prestamos
-@stop
-
 @section('cuerpo')
-	{!!Form::model($prestamo,['route'=> ['prestamo.destroy',$prestamo],'method'=> 'DELETE','class'=>''])!!}
+	{!!Form::open(['route'=> 'cuentas.store','method'=> 'POST','class'=>''])!!}
 		@include('alerts.errors')
 		@include('alerts.success')
+		@include('alerts.warning')
 	<!-- Default box -->
       <div class="box box-primary">
         <div class="box-header with-border">
           <br>
-          <h3 class="box-title">
-          	<div class="alert alert-danger alert-dismissible">
-	            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-	            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-	            Esta seguro que desea eliminar este prestamo no podra desahacer esta opcion
-	         </div>
-          </h3>
+          <h3 class="box-title">Nueva Anotacion</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -84,21 +74,12 @@ Lista de Prestamos
 		            </div>
 	            	</br>
 				</div>
-
-				<div class='col-sm-2'>
-					{!!Form::label('lblMonto', 'Monto')!!}</br>
-					{!!Form::text('monto',null, ['class'=>'form-control','placeholder'=> 'Monto'])!!}
-				</div>
-				<div class='col-sm-2'>
-					{!!Form::label('lblInteres', 'Interes')!!}</br>
-					{!!Form::text('interes',null, ['class'=>'form-control','placeholder'=> 'Interes'])!!}
-				</div>
 			</div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-        	{!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
-        	<a href="{{route('prestamo.list')}}" class="btn btn btn-success">
+        	{!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
+        	<a href="{{route('cuentas.list')}}" class="btn btn btn-success">
               Cancelar
 			</a>
         </div>
@@ -124,7 +105,7 @@ Lista de Prestamos
 	//Date picker
 	    $('#datepicker').datepicker({
 	      autoclose: true,
-      	  format: "dd-mm-yyyy"
+      	  format: "yyyy-mm-dd"
 	    });
 	    // $('#datepicker').inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
 	//Timepicker
