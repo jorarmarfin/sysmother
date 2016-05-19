@@ -17,6 +17,7 @@ class CreateTransaccionDetallesTable extends Migration
             $table->integer('idtransaccion')->unsigned();
             $table->double('entrada',10,2);
             $table->double('salida',10,2);
+            $table->string('observacion',10,2);
             $table->date('fecha');
             $table->time('hora');
             $table->foreign('idtransaccion')->references('id')->on('transaccion');

@@ -158,6 +158,8 @@ Lista de Detalle Cuentas
         <div class="form-group">
             {!!Form::label('lblCantidad', 'Cantidad')!!}</br>
             {!!Form::number('entrada',old('entrada'), ['class'=>'form-control','placeholder'=> 'cantidad','step'=>'any'])!!}
+            {!!Form::label('lblProcedencia', 'Cantidad')!!}</br>
+            {!!Form::number('entrada',old('entrada'), ['class'=>'form-control','placeholder'=> 'cantidad','step'=>'any'])!!}
             {!!Form::label('lblFecha', 'Fecha')!!}</br>
             {!!Form::date('fecha',null, ['class'=>'form-control','placeholder'=> 'Fecha'])!!}
         </div>
