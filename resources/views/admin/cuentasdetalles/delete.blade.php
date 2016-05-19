@@ -12,29 +12,29 @@
 @stop
 
 @section('titulopagina')
-Administracion de Ventas
+Administracion de Cuentas
 @stop
 
 @section('subtitulopagina')
 
 @stop
 
-
-@section('titulocuerpo')
-@stop
-
 @section('cuerpo')
-	{!!Form::model($ventadetalle,['route'=> ['ventadetalle.destroy',$ventadetalle],'method'=> 'DELETE','class'=>''])!!}
+	{!!Form::model($cuentasdetalles,['route'=> ['cuentasdetalles.destroy',$cuentasdetalles],'method'=> 'DELETE','class'=>''])!!}
 		@include('alerts.errors')
 		@include('alerts.success')
 	<!-- Default box -->
-      <div class="box box-warning">
+    @if($cuentasdetalles->entrada!=0)
+      <div class="box box-danger">
+	@else
+      <div class="box box-info">
+	@endif
         <div class="box-header with-border">
           <br>
           <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-                Esta seguro que desea eliminar esta venta no podra desahacer esta opcion
+                Esta seguro que desea eliminar esta cuenta no podra desahacer esta opcion
               </div>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -44,51 +44,22 @@ Administracion de Ventas
           </div>
         </div>
         <div class="box-body">
-        	<div class="row">
-        		<div class='col-sm-2'>
-					{!!Form::label('lblProducto', 'Producto')!!}</br>
-		            {!!Form::select('idproducto', ['-1' => 'Seleccionar Producto']+ $products,null,['class'=>'form-control','id'=>'idproducto']);!!}</br>
-		          </div>
-        		<div class='col-sm-2'>
-					{!!Form::label('lblCantidad', 'Cantidad')!!}</br>
-					{!!Form::text('cantidad',null, ['class'=>'form-control','placeholder'=> 'Cantidad'])!!}
-				</div>
-				<div class='col-sm-12'>
-					{!!Form::label('lblFecha', 'Fecha')!!}</br>
-					<div class="input-group date">
-	                  <div class="input-group-addon">
-	                    <i class="fa fa-calendar"></i>
-	                  </div>
-	                  {!!Form::text('fecha',null, ['class'=>'form-control pull-right','id'=> 'datepicker'])!!}
-
-	                </div>
-	            	</br>
-				</div>
-				<div class='col-sm-12'>
-					{!!Form::label('lblHora', 'Hora')!!}</br>
-					<div class="bootstrap-timepicker">
-		                <div class="form-group">
-		                  <div class="input-group">
-		                    <div class="input-group-addon">
-		                      <i class="fa fa-clock-o"></i>
-		                    </div>
-		                    <input name="hora" type="text" class="form-control timepicker">
-
-		                  </div>
-		                  <!-- /.input group -->
-		                </div>
-		                <!-- /.form group -->
-		            </div>
-	            	</br>
-				</div>
-
-
-			</div>
+        	<div class="form-group">
+	            @if($cuentasdetalles->entrada!=0)
+	            	{!!Form::label('lblCobro', 'Cobro')!!}</br>
+	            	{!!Form::number('entrada',old('entrada'), ['class'=>'form-control','placeholder'=> 'Cobro','step'=>'any'])!!}
+	            @else
+	            	{!!Form::label('lblVenta', 'Venta')!!}</br>
+	            	{!!Form::number('salida',old('salida'), ['class'=>'form-control','placeholder'=> 'Venta','step'=>'any'])!!}
+	            @endif
+	           	 	{!!Form::label('lblFecha', 'Fecha')!!}</br>
+	            	{!!Form::date('fecha',null, ['class'=>'form-control','placeholder'=> 'Fecha'])!!}
+        	</div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
         	{!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
-        	<a href="{{route('ventadetalle.list',$ventadetalle->idtransaccion)}}" class="btn btn btn-success">
+        	<a href="{{route('cuentasdetalles.list',$cuentasdetalles->idtransaccion)}}" class="btn btn btn-success">
               Cancelar
 			</a>
         </div>
@@ -103,23 +74,8 @@ Administracion de Ventas
 <script src={{asset("plugins/fastclick/fastclick.js")}}></script>
 <!-- AdminLTE for demo purposes -->
 <script src={{asset("dist/js/demo.js")}}></script>
-<!-- bootstrap datepicker -->
-<script src={{asset("plugins/datepicker/bootstrap-datepicker.js")}}></script>
-<!-- bootstrap time picker -->
-<script src={{asset("plugins/timepicker/bootstrap-timepicker.min.js")}}></script>
 @stop
 
 @section('javascript')
-<script>
-	//Date picker
-	    $('#datepicker').datepicker({
-	      autoclose: true,
-      	  format: "yyyy-mm-dd"
-	    });
-	    // $('#datepicker').inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-	//Timepicker
-	    $(".timepicker").timepicker({
-	      showInputs: false
-	    });
-</script>
+
 @stop

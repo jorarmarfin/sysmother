@@ -9,6 +9,7 @@ use App\TransaccionDetalle;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -24,7 +25,8 @@ class CuentasDetallesController extends Controller
     {
         Session::put('id', $id);
         $Lista = Transaccion::getDetalleCuentas($id);
-        return view('admin.cuentasdetalles.list',compact('Lista'));
+        $Resumen = Transaccion::getTotalDetalleCuentas($id);
+        return view('admin.cuentasdetalles.list',compact('Lista','Resumen'));
     }
 
     /**
@@ -45,7 +47,15 @@ class CuentasDetallesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $date = Carbon::now();
+        $data = $request->all();
+        $data['idtransaccion']=Session::get('id');
+        $data['hora']=$date->toTimeString();;
+        $transactionDetails = new TransaccionDetalle($data);
+        $transactionDetails->save();
+
+        $this->UpdateTotalTransaccion(Session::get('id'));
+        return redirect()->back()->with('success','Se ha registrado la cuenta satisfactoriamente');
     }
 
     /**
@@ -56,7 +66,8 @@ class CuentasDetallesController extends Controller
      */
     public function show($id)
     {
-        //
+        $cuentasdetalles = TransaccionDetalle::findOrFail($id);
+        return view('admin.cuentasdetalles.delete',compact('cuentasdetalles'));
     }
 
     /**
@@ -67,7 +78,8 @@ class CuentasDetallesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cuentasdetalles = TransaccionDetalle::findOrFail($id);
+        return view('admin.cuentasdetalles.edit',compact('cuentasdetalles'));
     }
 
     /**
@@ -79,7 +91,13 @@ class CuentasDetallesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cuentasdetalles = TransaccionDetalle::findOrFail($id);
+        $cuentasdetalles->fill($request->all());
+        $cuentasdetalles->save();
+
+        $this->UpdateTotalTransaccion(Session::get('id'));
+        return redirect()->route('cuentasdetalles.list',$cuentasdetalles->idtransaccion)
+                         ->with('success','Se ha editado satisfactoriamente');
     }
 
     /**
@@ -90,6 +108,21 @@ class CuentasDetallesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        TransaccionDetalle::destroy($id);
+
+        $this->UpdateTotalTransaccion(Session::get('id'));
+        return redirect()->route('cuentasdetalles.list',Session::get('id'))
+                         ->with('success','Se ha Eliminado satisfactoriamente');
+    }
+    /**
+     * Actualiza total de la transaccion
+     * @param [type] $id [description]
+     */
+    public function UpdateTotalTransaccion($id)
+    {
+        $Resumen = Transaccion::getTotalDetalleCuentas($id);
+        $Transaction = Transaccion::findOrFail($id);
+        $Transaction->monto = $Resumen[0]['sumventa']-$Resumen[0]['sumcobro'];
+        $Transaction->save();
     }
 }

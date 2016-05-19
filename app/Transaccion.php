@@ -148,7 +148,7 @@ class Transaccion extends Model
     public function scopegetDetalleCuentas($cadenaSQL,$id)
     {
         return $cadenaSQL->select(
-                                'transaccion.*',
+                                'td.id',
                                 'c.nombres as cliente',
                                 'td.entrada',
                                 'td.salida',
@@ -157,6 +157,17 @@ class Transaccion extends Model
                                 )
                          ->leftJoin('transaccion_detalle as td','td.idtransaccion','=','transaccion.id')
                          ->Join('cliente as c','c.id','=','transaccion.idcliente')
+                         ->where('transaccion.id',$id)
+                         ->get();
+    }
+
+    public function scopegetTotalDetalleCuentas($cadenaSQL,$id)
+    {
+        return $cadenaSQL->select(
+                                DB::raw('sum(td.entrada) as sumcobro'),
+                                DB::raw('sum(td.salida) as sumventa')
+                                )
+                         ->leftJoin('transaccion_detalle as td','td.idtransaccion','=','transaccion.id')
                          ->where('transaccion.id',$id)
                          ->get();
     }

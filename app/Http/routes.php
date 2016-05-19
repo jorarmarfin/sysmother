@@ -28,11 +28,13 @@ Route::group(['middleware'=> 'auth'],function(){
 });
 
 /**
- * Rutas de Cuotas
+ * Rutas de Cuentas detalles
  */
 Route::group(['prefix'=>'cuentasdetalles','namespace'=>'CuentasDetalles','middleware'=> 'auth'],function(){
 
 	Route::get('list/{id}', ['uses' => 'CuentasDetallesController@index','as' => 'cuentasdetalles.list']);
+	Route::get('vendo', ['uses' => 'CuentasDetallesController@vendo','as' => 'cuentasdetalles.vendo']);
+	Route::get('cobro', ['uses' => 'CuentasDetallesController@cobro','as' => 'cuentasdetalles.cobro']);
 });
 
 Route::group(['middleware'=> 'auth'],function(){

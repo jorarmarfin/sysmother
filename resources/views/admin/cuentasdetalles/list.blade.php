@@ -30,16 +30,14 @@ Lista de Detalle Cuentas
 <div class="box box-warning">
   <div class="box-header with-border">
   	<a href="#" class="btn btn btn-info" data-toggle="modal" data-target="#myModalVendo">
-        <i class="fa fa-plus" ></i>
          Vendo
 		</a>
     <a href="#" class="btn btn btn-danger" data-toggle="modal" data-target="#myModalCobro">
-        <i class="fa fa-plus" ></i>
          Cobro
     </a>
-		<a href="{{route('venta.list')}}" class="btn btn btn-success">
+		<a href="{{route('cuentas.list')}}" class="btn btn btn-success">
             <i class="fa fa-mail-reply " ></i>
-             Regresar a Ventas
+             Regresar a Cuentas
 		</a>
     <a href="{{route('ventadetalle.imprimir')}}" class="btn btn btn-primary">
             <i class="fa fa-print " ></i>
@@ -54,7 +52,7 @@ Lista de Detalle Cuentas
         <h3 class="widget-user-username">{{$Lista[0]['cliente'] }}</h3>
       </div>
       <div class="box-footer no-padding col-sm-6">
-        <div class="text-left"><h1>Total : S/ </h1></div>
+        <div class="text-left"><h1>Total : S/ {{$Resumen[0]['sumventa']-$Resumen[0]['sumcobro']}}</h1></div>
 
       </div>
     </div>
@@ -70,8 +68,7 @@ Lista de Detalle Cuentas
 		    <thead>
 			    <tr>
 			      <th>Id</th>
-            <th>Entrada</th>
-            <th>Salida</th>
+            <th>Cuentas</th>
 			      <th>Fecha</th>
 			      <th>Hora</th>
 			      <th>Opciones</th>
@@ -81,15 +78,20 @@ Lista de Detalle Cuentas
 		    @foreach($Lista as $lista)
 	      		<tr>
 		        <td>{{$lista->id}}</td>
-            <td>{{$lista->entrada}}</td>
-            <td>{{$lista->salida}}</td>
+            <td>
+              @if($lista->salida>0)
+                <span class="badge bg-light-blue">{{$lista->salida}}  +</span>
+              @else
+                <span class="text-red">({{$lista->entrada}})  -</span>
+              @endif
+            </td>
 		        <td>{{$lista->fecha}}</td>
 		        <td>{{$lista->hora}}</td>
 		        <td>
-		            <a href="{{route('ventadetalle.edit',$lista->id)}}" class="btn btn-primary" >
+		            <a href="{{route('cuentasdetalles.edit',$lista->id)}}" class="btn btn-primary" >
 		              <i class="fa fa-pencil" ></i>
 		            </a>
-		            <a href="{{route('ventadetalle.show',$lista->id)}}" class="btn btn-danger">
+		            <a href="{{route('cuentasdetalles.show',$lista->id)}}" class="btn btn-danger">
 		              <i class="fa fa-trash-o" ></i>
 		            </a>
 		        </td>
@@ -100,8 +102,7 @@ Lista de Detalle Cuentas
 		    <tfoot>
 		    <tr>
 		      <th>Id</th>
-          <th>Entrada</th>
-          <th>Salida</th>
+          <th>Cuentas</th>
           <th>Fecha</th>
           <th>Hora</th>
           <th>Opciones</th>
@@ -124,18 +125,20 @@ Lista de Detalle Cuentas
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">ENTRADA de {{$Lista[0]['cliente'] }}</h4>
+        <h4 class="modal-title" id="myModalLabel">VENDO a {{$Lista[0]['cliente'] }}</h4>
       </div>
       <div class="modal-body">
 
         <div class="form-group">
             {!!Form::label('lblCantidad', 'Cantidad')!!}</br>
-            {!!Form::number('cantidad',old('cantidad'), ['class'=>'form-control','placeholder'=> 'cantidad','step'=>'any'])!!}
+            {!!Form::number('salida',old('salida'), ['class'=>'form-control','placeholder'=> 'cantidad','step'=>'any'])!!}
+            {!!Form::label('lblFecha', 'Fecha')!!}</br>
+            {!!Form::date('fecha',null, ['class'=>'form-control','placeholder'=> 'Fecha'])!!}
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-        {!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
+        {!!Form::button('Cerrar',['class'=>'btn btn-outline pull-left','data-dismiss'=>'modal'])!!}
+        {!!Form::submit('Guardar',['class'=>'btn btn-outline'])!!}
       </div>
     </div>
   </div>
@@ -148,18 +151,20 @@ Lista de Detalle Cuentas
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">SALIDA de {{$Lista[0]['cliente'] }}</h4>
+        <h4 class="modal-title" id="myModalLabel">COBRO A {{$Lista[0]['cliente'] }}</h4>
       </div>
       <div class="modal-body">
 
         <div class="form-group">
             {!!Form::label('lblCantidad', 'Cantidad')!!}</br>
-            {!!Form::number('cantidad',old('cantidad'), ['class'=>'form-control','placeholder'=> 'cantidad','step'=>'any'])!!}
+            {!!Form::number('entrada',old('entrada'), ['class'=>'form-control','placeholder'=> 'cantidad','step'=>'any'])!!}
+            {!!Form::label('lblFecha', 'Fecha')!!}</br>
+            {!!Form::date('fecha',null, ['class'=>'form-control','placeholder'=> 'Fecha'])!!}
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-        {!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
+        {!!Form::button('Cerrar',['class'=>'btn btn-outline pull-left','data-dismiss'=>'modal'])!!}
+        {!!Form::submit('Guardar',['class'=>'btn btn-outline'])!!}
       </div>
     </div>
   </div>
