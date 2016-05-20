@@ -80,7 +80,7 @@ Lista de Prestamos
 				</div>
 				<div class='col-sm-2'>
 					{!!Form::label('lblInteres', 'Interes')!!}</br>
-					{!!Form::text('interes',null, ['class'=>'form-control','placeholder'=> 'Interes'])!!}
+					{!!Form::number('interes',null, ['class'=>'form-control','placeholder'=> 'Interes'])!!}
 				</div>
 			</div>
         </div>

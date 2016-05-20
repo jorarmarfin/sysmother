@@ -35,7 +35,7 @@ class VentaController extends Controller
      */
     public function create()
     {
-        $clientes = Cliente::all()->lists('nombres','id')->toarray();
+        $clientes = Cliente::orderBy('nombres')->get()->lists('nombres','id')->toarray();
         $lugar = Catalogo::Combo('LUGAR')->get()->lists('nombre','id')->toarray();
         return view('admin.venta.create',compact('clientes','lugar'));
     }

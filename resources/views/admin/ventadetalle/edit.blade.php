@@ -47,7 +47,7 @@ Administracion de Ventas
 		          </div>
         		<div class='col-sm-2'>
 					{!!Form::label('lblCantidad', 'Cantidad')!!}</br>
-					{!!Form::text('cantidad',null, ['class'=>'form-control','placeholder'=> 'Cantidad'])!!}
+					{!!Form::number('cantidad',null, ['class'=>'form-control','placeholder'=> 'Cantidad'])!!}
 				</div>
 				<div class='col-sm-12'>
 					{!!Form::label('lblFecha', 'Fecha')!!}</br>

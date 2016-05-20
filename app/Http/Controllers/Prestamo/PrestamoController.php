@@ -35,7 +35,7 @@ class PrestamoController extends Controller
      */
     public function create()
     {
-        $clientes = Cliente::all()->lists('nombres','id')->toarray();
+        $clientes = Cliente::orderBy('nombres')->get()->lists('nombres','id')->toarray();
         $lugar = Catalogo::Combo('LUGAR')->get()->lists('nombre','id')->toarray();
         return view('admin.prestamo.create',compact('clientes','lugar'));
     }
@@ -89,7 +89,7 @@ class PrestamoController extends Controller
             return redirect()->route('prestamo.list')->with('success','No puede editar un Prestamo pagado');
         }else{
             $lugar = Catalogo::Combo('LUGAR')->get()->lists('nombre','id')->toarray();
-            $clientes = Cliente::all()->lists('nombres','id')->toarray();
+            $clientes = Cliente::orderBy('nombres')->get()->lists('nombres','id')->toarray();
             return view('admin.prestamo.edit',compact('clientes','prestamo','lugar'));
         }
     }

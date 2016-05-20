@@ -8,7 +8,7 @@ use DB;
 class TransaccionDetalle extends Model
 {
     protected $table = 'transaccion_detalle';
-    protected $fillable = ['idtransaccion','entrada','salida','observacion','fecha','hora'];
+    protected $fillable = ['idtransaccion','entrada','salida','idlugarpago','fecha','hora'];
     protected $hidden = ['remember_token'];
     // public $timestamps = false;
     #####################################################################

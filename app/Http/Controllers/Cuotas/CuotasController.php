@@ -55,6 +55,7 @@ class CuotasController extends Controller
         $date = Carbon::now();
         $data = $request->all();
         $data['idtransaccion']=Session::get('id');
+        $data['idlugarpago']=Catalogo::where('nombre','Personal')->get()->toArray()[0]['id'];
         $data['salida']=0;
         $data['fecha']=$date->toDateString('d-m-Y');;
         $data['hora']=$date->toTimeString();

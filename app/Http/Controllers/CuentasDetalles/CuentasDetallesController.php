@@ -26,7 +26,9 @@ class CuentasDetallesController extends Controller
         Session::put('id', $id);
         $Lista = Transaccion::getDetalleCuentas($id);
         $Resumen = Transaccion::getTotalDetalleCuentas($id);
-        return view('admin.cuentasdetalles.list',compact('Lista','Resumen'));
+        $lugarpago = Catalogo::Combo('LUGAR PAGO')->orderBy('nombre')
+                            ->get()->lists('nombre','id')->toarray();
+        return view('admin.cuentasdetalles.list',compact('Lista','Resumen','lugarpago'));
     }
 
     /**

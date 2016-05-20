@@ -203,5 +203,37 @@ class CatalogoTableSeeder extends Seeder
                 'descripcion'=> 'Cuentas varias',
                 'activo'=> TRUE
             ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 0,
+                'iditem'=> 6,
+                'codigo'=> 'LUGAR PAGO',
+                'nombre'=> 'LUGAR PAGO',
+                'descripcion'=> 'LUGAR PAGO',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 6,
+                'iditem'=> 1,
+                'codigo'=> 'BF',
+                'nombre'=> 'Banco Financiero',
+                'descripcion'=> 'Banco Financiero',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 6,
+                'iditem'=> 2,
+                'codigo'=> 'CA',
+                'nombre'=> 'Caja Arequipa',
+                'descripcion'=> 'Caja Arequipa',
+                'activo'=> TRUE
+            ]);
+        factory(App\Catalogo::class)->create([
+                'idtable'=> 6,
+                'iditem'=> 3,
+                'codigo'=> 'PER',
+                'nombre'=> 'Personal',
+                'descripcion'=> 'Personal',
+                'activo'=> TRUE
+            ]);
     }
 }

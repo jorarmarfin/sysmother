@@ -69,6 +69,7 @@ Lista de Detalle Cuentas
 			    <tr>
 			      <th>Id</th>
             <th>Cuentas</th>
+            <th>Lugar Pago</th>
 			      <th>Fecha</th>
 			      <th>Hora</th>
 			      <th>Opciones</th>
@@ -85,6 +86,7 @@ Lista de Detalle Cuentas
                 <span class="text-red">({{$lista->entrada}})  -</span>
               @endif
             </td>
+            <td>{{$lista->lugarpago}}</td>
 		        <td>{{$lista->fecha}}</td>
 		        <td>{{$lista->hora}}</td>
 		        <td>
@@ -103,6 +105,7 @@ Lista de Detalle Cuentas
 		    <tr>
 		      <th>Id</th>
           <th>Cuentas</th>
+          <th>Lugar Pago</th>
           <th>Fecha</th>
           <th>Hora</th>
           <th>Opciones</th>
@@ -132,6 +135,8 @@ Lista de Detalle Cuentas
         <div class="form-group">
             {!!Form::label('lblCantidad', 'Cantidad')!!}</br>
             {!!Form::number('salida',old('salida'), ['class'=>'form-control','placeholder'=> 'cantidad','step'=>'any'])!!}
+            {!!Form::label('lblIdLugar', 'Lugar Pago')!!}</br>
+            {!!Form::select('idlugarpago', ['-1' => 'Seleccionar Lugar']+ $lugarpago,null,['class'=>'form-control','id'=>'idlugar']);!!}</br>
             {!!Form::label('lblFecha', 'Fecha')!!}</br>
             {!!Form::date('fecha',null, ['class'=>'form-control','placeholder'=> 'Fecha'])!!}
         </div>
@@ -158,8 +163,8 @@ Lista de Detalle Cuentas
         <div class="form-group">
             {!!Form::label('lblCantidad', 'Cantidad')!!}</br>
             {!!Form::number('entrada',old('entrada'), ['class'=>'form-control','placeholder'=> 'cantidad','step'=>'any'])!!}
-            {!!Form::label('lblProcedencia', 'Cantidad')!!}</br>
-            {!!Form::number('entrada',old('entrada'), ['class'=>'form-control','placeholder'=> 'cantidad','step'=>'any'])!!}
+            {!!Form::label('lblLuagrPago', 'Lugar Pago')!!}</br>
+            {!!Form::select('idlugarpago', ['-1' => 'Seleccionar Lugar']+ $lugarpago,null,['class'=>'form-control','id'=>'idlugar']);!!}</br>
             {!!Form::label('lblFecha', 'Fecha')!!}</br>
             {!!Form::date('fecha',null, ['class'=>'form-control','placeholder'=> 'Fecha'])!!}
         </div>

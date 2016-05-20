@@ -96,7 +96,7 @@ $factory->define(App\TransaccionDetalle::class, function ($faker) {
         'idtransaccion' => $faker->numberBetween(1,30),
         'entrada' => $faker->randomFloat($nbMaxDecimals = 2, $min = 1, $max = 100),
         'salida' => $faker->randomFloat($nbMaxDecimals = 2, $min = 1, $max = 100),
-        'observacion' => $faker->randomFloat($nbMaxDecimals = 2, $min = 1, $max = 100),
+        'idlugarpago' => $faker->randomElement($array = array (25,26,27)),
         'fecha' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'hora' => $faker->time($format = 'H:i:s', $max = 'now'),
         'remember_token' => str_random(10),

@@ -44,7 +44,7 @@ Administracion de Clientes
 				</div>
 				<div class='col-sm-2'>
 					{!!Form::label('lblDNI', 'DNI')!!}</br>
-					{!!Form::text('dni',null, ['class'=>'form-control','placeholder'=> 'ingrese su DNI'])!!}
+					{!!Form::number('dni',null, ['class'=>'form-control','placeholder'=> 'ingrese su DNI'])!!}
 				</div>
 				<div class='col-sm-2'>
 					{!!Form::label('lblTelefono', 'Telefono')!!}</br>

@@ -152,15 +152,22 @@ class Transaccion extends Model
                                 'c.nombres as cliente',
                                 'td.entrada',
                                 'td.salida',
+                                'lp.nombre as lugarpago',
                                 'td.fecha',
                                 'td.hora'
                                 )
                          ->leftJoin('transaccion_detalle as td','td.idtransaccion','=','transaccion.id')
-                         ->Join('cliente as c','c.id','=','transaccion.idcliente')
+                         ->leftJoin('cliente as c','c.id','=','transaccion.idcliente')
+                         ->leftJoin('catalogo as lp','lp.id','=','td.idlugarpago')
                          ->where('transaccion.id',$id)
                          ->get();
     }
-
+    /**
+     * Devuelve la suma total de entrada y salida
+     * @param  [type] $cadenaSQL [description]
+     * @param  [type] $id        [description]
+     * @return [type]            [description]
+     */
     public function scopegetTotalDetalleCuentas($cadenaSQL,$id)
     {
         return $cadenaSQL->select(

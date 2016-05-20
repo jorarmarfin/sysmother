@@ -43,7 +43,7 @@ Administracion de Pagos por ventas
         	<div class="row">
         		<div class='col-sm-2'>
 					{!!Form::label('lblMonto', 'Monto')!!}</br>
-					{!!Form::text('entrada',null, ['class'=>'form-control','placeholder'=> 'Monto'])!!}
+					{!!Form::number('entrada',null, ['class'=>'form-control','placeholder'=> 'Monto'])!!}
 				</div>
 				<div class='col-sm-12'>
 					{!!Form::label('lblFecha', 'Fecha')!!}</br>

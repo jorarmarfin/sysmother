@@ -17,10 +17,11 @@ class CreateTransaccionDetallesTable extends Migration
             $table->integer('idtransaccion')->unsigned();
             $table->double('entrada',10,2);
             $table->double('salida',10,2);
-            $table->string('observacion',10,2);
+            $table->integer('idlugarpago')->unsigned();
             $table->date('fecha');
             $table->time('hora');
             $table->foreign('idtransaccion')->references('id')->on('transaccion');
+            $table->foreign('idlugarpago')->references('id')->on('catalogo');
             $table->rememberToken();
             $table->timestamps();
         });

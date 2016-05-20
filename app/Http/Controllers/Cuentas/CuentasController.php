@@ -34,7 +34,7 @@ class CuentasController extends Controller
      */
     public function create()
     {
-        $clientes = Cliente::all()->lists('nombres','id')->toarray();
+        $clientes = Cliente::orderBy('nombres')->get()->lists('nombres','id')->toarray();
         $lugar = Catalogo::Combo('LUGAR')->get()->lists('nombre','id')->toarray();
         return view('admin.cuentas.create',compact('clientes','lugar'));
     }
@@ -81,7 +81,7 @@ class CuentasController extends Controller
             return redirect()->route('cuentas.list')->with('success','No puede editar una cuenta cerrada');
         }else{
             $lugar = Catalogo::Combo('LUGAR')->get()->lists('nombre','id')->toarray();
-            $clientes = Cliente::all()->lists('nombres','id')->toarray();
+            $clientes = Cliente::orderBy('nombres')->get()->lists('nombres','id')->toarray();
             return view('admin.cuentas.edit',compact('clientes','cuentas','lugar'));
         }
     }
